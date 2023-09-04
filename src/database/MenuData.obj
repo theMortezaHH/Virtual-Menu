@@ -1,0 +1,76 @@
+{
+    "categoryItems": [
+        {
+            "id": 1,
+            "title": "پیتزا",
+            "image": "src/assets/pizza.jpg"
+        },
+        {
+            "id": 2,
+            "title": "ساندویچ",
+            "image": "src/assets/sandwich.jpg"
+        },
+        {
+            "id": 3,
+            "title": "نوشیدنی های گرم",
+            "image": "src/assets/tea.jpg"
+        },
+        {
+            "id": 4,
+            "title": "قهوه",
+            "image": "src/assets/coffee.jpg"
+        },
+        {
+            "id": 5,
+            "title": "غذا",
+            "image": "src/assets/food.jpg"
+        },
+        {
+            "id": 6,
+            "title": "کیک",
+            "image": "src/assets/cake.jpg"
+        }
+    ],
+    "menuItems": [
+        {
+            "id": 1,
+            "categoryId": 1,
+            "image": "src/assets/pepperoni-pizza.jpg",
+            "title": "پیتزا پپرونی",
+            "duration": 30,
+            "price": 135000
+        },
+        {
+            "id": 2,
+            "categoryId": 1,
+            "image": "src/assets/chicken-pizza.jpg",
+            "title": "پیتزا مرغ",
+            "duration": 35,
+            "price": 140000
+        },
+        {
+            "id": 3,
+            "categoryId": 1,
+            "image": "src/assets/vegan-pizza.jpg",
+            "title": "پیتزا سبزیجات",
+            "duration": 30,
+            "price": 95000
+        },
+        {
+            "id": 4,
+            "categoryId": 2,
+            "image": "src/assets/sandwich.jpg",
+            "title": "همبرگر",
+            "duration": 20,
+            "price": 87000
+        },
+        {
+            "id": 5,
+            "categoryId": 3,
+            "image": "src/assets/tea.jpg",
+            "title": "چای ماسالا",
+            "duration": 5,
+            "price": 40000
+        }
+    ]
+}
