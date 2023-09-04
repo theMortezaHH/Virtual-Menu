@@ -91,14 +91,16 @@ onMounted(() => {
     }
     .item-time {
         height: 18px;
-        margin: 0 auto 5px 0;
+        margin: 0 0 5px 0;
         font-size: 18px;
         opacity: 0.55;
+        direction: rtl;
     }
     .item-price {
         height: 20px;
         margin: 0;
         font-size: 20px;
+        direction: rtl;
     }
     .add-to-card {
         display: flex;

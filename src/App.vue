@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from "vue"
 import MenuCategory from "./components/menu-category.vue"
 import Product from "./components/product.vue"
+import Basket from "./components/basket.vue"
 
 const categoryItems = ref([])
 const menuItems = ref([])
@@ -72,6 +73,8 @@ const selectedCategoryItems = computed(() => {
         :key="item.id"
         @update-count="updateBasket($event, item)"
     />
+
+    <Basket />
 </template>
 
 <style lang="scss" scoped>
