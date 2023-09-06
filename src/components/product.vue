@@ -4,8 +4,7 @@ import { onMounted, ref } from "vue"
 const props = defineProps({
     value: Object,
 })
-
-const count = ref(JSON.parse(localStorage.getItem("data")).menuItems[props.value.id - 1].count)
+const count = ref(props.value.count)
 const id = "removable" + props.value.id
 
 function changeNumber(param) {
@@ -85,6 +84,7 @@ onMounted(() => {
     }
     .item-name {
         height: 20px;
+        width: 135px;
         margin: -10px auto 40px 0;
         font-size: 20px;
         font-weight: bold;
