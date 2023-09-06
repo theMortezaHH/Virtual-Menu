@@ -7,6 +7,7 @@ import Basket from "./components/basket.vue"
 const categoryItems = ref([])
 const menuItems = ref([])
 const selectedIndex = ref(0)
+var data = ref({})
 // const basket = ref([])
 onMounted(() => {
     getData()
@@ -14,13 +15,12 @@ onMounted(() => {
 
 async function getData() {
     const response = await fetch("src/database/MenuData.obj")
-    const data = await response.json()
-    for (let index = 0; index < data.menuItems.length; index++) {
-        data.menuItems[index].count = 0
+    data.value = await response.json()
+    for (let index = 0; index < data.value.menuItems.length; index++) {
+        data.value.menuItems[index].count = 0
     }
-    localStorage.setItem("data", JSON.stringify(data))
-    categoryItems.value = JSON.parse(localStorage.getItem("data")).categoryItems
-    menuItems.value = JSON.parse(localStorage.getItem("data")).menuItems
+    categoryItems.value = data.value.categoryItems
+    menuItems.value = data.value.menuItems
 }
 
 const selectedCategoryItems = computed(() => {
@@ -67,13 +67,8 @@ const selectedCategoryItems = computed(() => {
         />
     </div>
 
-    <Product
-        v-for="(item, index) in selectedCategoryItems"
-        :value="item"
-        :key="item.id"
-        @update-count="updateBasket($event, item)"
-    />
-
+    <Product v-for="item in selectedCategoryItems" :value="item" :key="item.id" />
+    <!-- @update-count="updateBasket($event, item)" -->
     <Basket />
 </template>
 
