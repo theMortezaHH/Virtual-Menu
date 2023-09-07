@@ -8,7 +8,7 @@ const categoryItems = ref([])
 const menuItems = ref([])
 const selectedIndex = ref(0)
 var data = ref({})
-// const basket = ref([])
+
 onMounted(() => {
     getData()
 })
@@ -28,29 +28,6 @@ const selectedCategoryItems = computed(() => {
     const selectedId = categoryItems.value[selectedIndex.value].id
     return menuItems.value.filter((x) => x.categoryId === selectedId)
 })
-
-// function updateBasket(count, item) {
-//     const basketItem = basket.value.findIndex((x) => x.item.id === item.id)
-//     if ((basketItem === -1) & (count > 0)) {
-//         basket.value[item.id - 1] = { item, count }
-//     } else if (count === 0) {
-//         basket.value.splice(basketItem, 1)
-//     } else {
-//         basket.value[basketItem].count = count
-//     }
-//     for (let index = 0; index < basket.value.length; index++) {
-//         if (basket.value[index]) {
-//             basket.push()
-//         }
-//     }
-//     localStorage.setItem("basket", JSON.stringify(basket.value))
-// const moz = JSON.parse(localStorage.getItem("basket")).filter((x) => x.item.id === "1")
-// console.log(basket.value[0].count)
-
-// for (let index = 0; index < basket.value.length; index++) {
-//     console.log(basket.value[index] ? basket.value[index].count : 0)
-// }
-// }
 </script>
 
 <template>
@@ -68,7 +45,7 @@ const selectedCategoryItems = computed(() => {
     </div>
 
     <Product v-for="item in selectedCategoryItems" :value="item" :key="item.id" />
-    <!-- @update-count="updateBasket($event, item)" -->
+
     <Basket />
 </template>
 

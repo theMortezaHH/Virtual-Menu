@@ -12,9 +12,11 @@ function changeNumber(param) {
     if (count.value + param === 0) {
         document.querySelector("#" + id + " .number").style.display = "none"
         document.querySelector("#" + id + " .remove").style.display = "none"
+        document.querySelector("#" + id + " .add-to-basket-text").style.display = "block"
     } else {
         document.querySelector("#" + id + " .number").style.display = "block"
         document.querySelector("#" + id + " .remove").style.display = "block"
+        document.querySelector("#" + id + " .add-to-basket-text").style.display = "none"
     }
     if (count.value + param === 1) {
         document.querySelector("#" + id + " .remove").src = "src/assets/trash.svg"
@@ -37,18 +39,21 @@ onMounted(() => {
         <img class="item-img" :src="props.value.image" />
         <div class="item-info">
             <p class="item-name">{{ props.value.title }}</p>
-            <p class="item-time">{{ props.value.duration }} دقیقه</p>
-            <p class="item-price">{{ props.value.price }} تومان</p>
-        </div>
-        <div class="add-to-card" :id="id">
-            <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
-            <p class="number">{{ count }}</p>
-            <img
-                class="remove"
-                src="src/assets/remove.svg"
-                @click="changeNumber(-1)"
-                alt="remove"
-            />
+            <div>
+                <p class="item-price">{{ props.value.price }} تومان</p>
+                <p class="item-time">{{ props.value.duration }} دقیقه</p>
+            </div>
+            <div class="add-to-card" :id="id">
+                <img
+                    class="remove"
+                    src="src/assets/remove.svg"
+                    @click="changeNumber(-1)"
+                    alt="remove"
+                />
+                <p class="add-to-basket-text" @click="changeNumber(1)">افزودن به سبد خرید</p>
+                <p class="number">{{ count }}</p>
+                <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
+            </div>
         </div>
     </div>
 </template>
@@ -58,7 +63,7 @@ onMounted(() => {
     display: flex;
     position: relative;
     flex-direction: row;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     height: 130px;
     width: 350px;
@@ -70,67 +75,100 @@ onMounted(() => {
         height: 122px;
         width: 122px;
         border-radius: 15px;
-        margin-left: 4px;
+        margin: 4px 0 4px 4px;
     }
     .item-info {
         display: flex;
         position: relative;
         flex-direction: column;
-        justify-content: center;
-        align-items: start;
-        height: 130px;
-        width: 150px;
-        margin-left: 15px;
-    }
-    .item-name {
-        height: 20px;
-        width: 135px;
-        margin: -10px auto 40px 0;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    .item-time {
-        height: 18px;
-        margin: 0 0 5px 0;
-        font-size: 18px;
-        opacity: 0.55;
-        direction: rtl;
-    }
-    .item-price {
-        height: 20px;
-        margin: 0;
-        font-size: 20px;
-        direction: rtl;
-    }
-    .add-to-card {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 110px;
-        width: 35px;
-        padding: 4px 0;
-        background: #f5f5f5;
-        border-radius: 20px;
-        box-shadow: 0 2px 5px 2px #00000055;
-        img {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
+        justify-content: start;
+        align-items: end;
+        height: 100%;
+        width: 100%;
+        .item-name {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            justify-content: start;
+            align-items: end;
+            margin: 6px 15px 15px 0;
+            height: 35px;
+            width: 100%;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        div {
+            position: relative;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            .item-price {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 0 15px 0 0;
+                height: 19px;
+                font-size: 19px;
+                font-weight: bold;
+                direction: rtl;
+            }
+            .item-time {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 0 15px 0 0;
+                height: 18px;
+                font-size: 18px;
+                opacity: 0.55;
+                direction: rtl;
+            }
+        }
+        .add-to-card {
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            height: 35px;
+            width: fit-content;
+            padding: 0 4px;
+            background: #f5f5f5;
+            border-radius: 20px;
             box-shadow: 0 2px 5px 2px #00000055;
-            background: #ffffff;
-        }
-        .add {
-            margin: outo;
-        }
-        .number {
-            height: 25px;
-            width: 40px;
-            margin: 8px auto auto auto;
-            padding: 0 5px 0 0;
-            font-size: 25px;
-            text-align: center;
+            .add-to-basket-text {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0 5px;
+                border-radius: 10px;
+            }
+            img {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px 2px #00000055;
+                background: #ffffff;
+            }
+            .number {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 25px;
+                width: 40px;
+                margin: 0 10px 10px 10px;
+                font-size: 25px;
+                text-align: center;
+            }
         }
     }
 }
