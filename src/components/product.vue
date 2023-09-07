@@ -1,37 +1,42 @@
 <script setup>
 import { onMounted, ref } from "vue"
+import useBasketStore from "../store/basket"
+const basketStore = useBasketStore()
 
 const props = defineProps({
     value: Object,
 })
-const count = ref(props.value.count)
+
+const count = ref(basketStore.getCount(props.value.id))
 const id = "removable" + props.value.id
 
 function changeNumber(param) {
     if (count.value + param < 0) return
-    if (count.value + param === 0) {
-        document.querySelector("#" + id + " .number").style.display = "none"
-        document.querySelector("#" + id + " .remove").style.display = "none"
-        document.querySelector("#" + id + " .add-to-basket-text").style.display = "block"
-    } else {
-        document.querySelector("#" + id + " .number").style.display = "block"
-        document.querySelector("#" + id + " .remove").style.display = "block"
-        document.querySelector("#" + id + " .add-to-basket-text").style.display = "none"
-    }
-    if (count.value + param === 1) {
-        document.querySelector("#" + id + " .remove").src = "src/assets/trash.svg"
-    } else {
-        document.querySelector("#" + id + " .remove").src = "src/assets/remove.svg"
-    }
     count.value += param
-    const data = JSON.parse(localStorage.getItem("data"))
-    data.menuItems[props.value.id - 1].count = count.value
-    localStorage.setItem("data", JSON.stringify(data))
+    basketStore.addToBasket(props.value, count.value)
+
+    // if (count.value + param === 0) {
+    //     document.querySelector("#" + id + " .number").style.display = "none"
+    //     document.querySelector("#" + id + " .remove").style.display = "none"
+    //     document.querySelector("#" + id + " .add-to-basket-text").style.display = "block"
+    // } else {
+    //     document.querySelector("#" + id + " .number").style.display = "block"
+    //     document.querySelector("#" + id + " .remove").style.display = "block"
+    //     document.querySelector("#" + id + " .add-to-basket-text").style.display = "none"
+    // }
+    // if (count.value + param === 1) {
+    //     document.querySelector("#" + id + " .remove").src = "src/assets/trash.svg"
+    // } else {
+    //     document.querySelector("#" + id + " .remove").src = "src/assets/remove.svg"
+    // }
+    // const data = JSON.parse(localStorage.getItem("data"))
+    // data.menuItems[props.value.id - 1].count = count.value
+    // localStorage.setItem("data", JSON.stringify(data))
 }
 
-onMounted(() => {
-    changeNumber(0)
-})
+// onMounted(() => {
+//     changeNumber(0)
+// })
 </script>
 
 <template>
@@ -46,12 +51,22 @@ onMounted(() => {
             <div class="add-to-card" :id="id">
                 <img
                     class="remove"
+                    v-if="count > 1"
                     src="src/assets/remove.svg"
                     @click="changeNumber(-1)"
                     alt="remove"
                 />
-                <p class="add-to-basket-text" @click="changeNumber(1)">افزودن به سبد خرید</p>
-                <p class="number">{{ count }}</p>
+                <img
+                    class="remove"
+                    v-if="count === 1"
+                    src="src/assets/trash.svg"
+                    @click="changeNumber(-1)"
+                    alt="remove"
+                />
+                <p class="add-to-basket-text" v-if="count === 0" @click="changeNumber(1)"
+                    >افزودن به سبد خرید</p
+                >
+                <p class="number" v-if="count > 0">{{ count }}</p>
                 <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
             </div>
         </div>
@@ -165,7 +180,7 @@ onMounted(() => {
                 align-items: center;
                 height: 25px;
                 width: 40px;
-                margin: 0 10px 10px 10px;
+                margin: 0 10px 0 10px;
                 font-size: 25px;
                 text-align: center;
             }

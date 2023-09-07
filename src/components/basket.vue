@@ -1,5 +1,8 @@
 <script setup>
 import BasketItem from "./basket-item.vue"
+import useBasketStore from "../store/basket.js"
+
+const basketStore = useBasketStore()
 
 function ShowBasket() {
     const item = document.querySelector(".basket")
@@ -13,9 +16,18 @@ function ShowBasket() {
 <template>
     <div class="basket">
         <div class="basket-header" @click="ShowBasket()">
-            <img class="basket-icon" src="src/assets/basket.svg" />
-            <p class="items-in-basket">6</p>
-            <p class="items-total-price">جمع کل: 538760 تومان</p>
+            <img
+                class="basket-icon"
+                :class="{ shake: basketStore.animatedBasket }"
+                src="src/assets/basket.svg"
+            />
+            <p v-if="basketStore.itemsCount > 0" class="items-in-basket">{{
+                basketStore.itemsCount
+            }}</p>
+            <p v-if="basketStore.itemsCount > 0" class="items-total-price">
+                جمع کل: {{ basketStore.totalPrice }} تومان
+            </p>
+            <p v-else class="items-total-price"> سبد شما خالیست </p>
             <img class="chevron" src="src/assets/chevron.svg" />
         </div>
         <!-- <BasketItem v-for="item in data.value" :value="value" /> -->
@@ -83,6 +95,54 @@ function ShowBasket() {
             transition-duration: 0.3s;
             transform: rotate(0deg);
         }
+    }
+}
+
+.shake {
+    -webkit-animation: shake 40s ease infinite;
+    -moz-animation: shake 40s ease infinite;
+    animation: shake 40s ease infinite;
+}
+
+@keyframes shake {
+    1% {
+        transform: rotateZ(15deg);
+        transform-origin: 50% 0%;
+    }
+
+    2% {
+        transform: rotateZ(-15deg);
+        transform-origin: 50% 0%;
+    }
+
+    3% {
+        transform: rotateZ(20deg);
+        transform-origin: 50% 0%;
+    }
+
+    4% {
+        transform: rotateZ(-20deg);
+        transform-origin: 50% 0%;
+    }
+
+    5% {
+        transform: rotateZ(15deg);
+        transform-origin: 50% 0%;
+    }
+
+    6% {
+        transform: rotateZ(-15deg);
+        transform-origin: 50% 0%;
+    }
+
+    7% {
+        transform: rotateZ(0);
+        transform-origin: 50% 0%;
+    }
+
+    100% {
+        transform: rotateZ(0);
+        transform-origin: 50% 0%;
     }
 }
 </style>
