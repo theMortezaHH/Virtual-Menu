@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-    <RouterView />
+    <router-link to="/">Go Home</router-link>
 </template>

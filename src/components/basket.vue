@@ -29,6 +29,9 @@ function ShowBasket() {
                 :key="index"
             />
         </div>
+        <div>
+            <router-link to="/order">Go Order</router-link>
+        </div>
     </div>
 </template>
 
