@@ -1,5 +1,5 @@
 <script setup></script>
 <template>
-    <RouterView />
+    <div> hello </div>
 </template>
 <style lang="scss" scoped></style>

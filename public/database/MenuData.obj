@@ -43,13 +43,21 @@
         {
             "id": 1,
             "categoryId": 0,
+            "image": "/assets/special-pizza.jpg",
+            "title": "پیتزا اسپشیال",
+            "duration": 30,
+            "price": 145000
+        },
+        {
+            "id": 2,
+            "categoryId": 0,
             "image": "/assets/chicken-pizza.jpg",
             "title": "پیتزا مرغ",
             "duration": 35,
             "price": 140000
         },
         {
-            "id": 2,
+            "id": 3,
             "categoryId": 0,
             "image": "/assets/vegan-pizza.jpg",
             "title": "پیتزا سبزیجات",
@@ -57,7 +65,7 @@
             "price": 95000
         },
         {
-            "id": 3,
+            "id": 4,
             "categoryId": 1,
             "image": "/assets/sandwich.jpg",
             "title": "همبرگر",
@@ -65,7 +73,7 @@
             "price": 87000
         },
         {
-            "id": 4,
+            "id": 5,
             "categoryId": 2,
             "image": "/assets/tea.jpg",
             "title": "چای ماسالا",

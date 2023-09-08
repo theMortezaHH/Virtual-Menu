@@ -29,6 +29,9 @@ function ShowBasket() {
                 :key="index"
             />
         </div>
+        <router-link class="go-to-card" v-if="useDataStore().basketItemsCount > 0" to="/cart"
+            >ثبت سفارش</router-link
+        >
     </div>
 </template>
 
@@ -104,6 +107,21 @@ function ShowBasket() {
         height: 100%;
         width: 100%;
         overflow: auto;
+    }
+    .go-to-card {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 10px 0;
+        height: 50px;
+        width: 240px;
+        background: #f5f5f5;
+        color: #000000;
+        box-shadow: 0 2px 5px 2px #00000055;
+        border-radius: 10px;
+        text-decoration: none;
     }
 }
 </style>
