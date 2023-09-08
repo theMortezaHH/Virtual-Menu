@@ -1,54 +1,105 @@
-<script setup></script>
+<script setup>
+import useDataStore from "../store/store"
+
+const props = defineProps({
+    value: Object,
+})
+
+function changeNumber(param) {
+    if (props.value.count + param < 0) return
+    useDataStore().data.menuItems[props.value.id].count += param
+    console.log(useDataStore().basketItems)
+}
+</script>
+
 <template>
     <div class="basket-item-card">
-        <p class="item-name">پیتزا پپرونی</p>
-        <p class="items-value">13500 تومان</p>
-        <div class="add-to-card" :id="id">
-            <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
-            <p class="number">20</p>
+        <p class="item-name">{{ props.value.title }}</p>
+        <p class="item-price">{{ props.value.price }} تومان</p>
+        <div class="add-to-card">
             <img
                 class="remove"
+                v-if="props.value.count > 1"
                 src="src/assets/remove.svg"
                 @click="changeNumber(-1)"
                 alt="remove"
             />
+            <img
+                class="remove"
+                v-if="props.value.count === 1"
+                src="src/assets/trash.svg"
+                @click="changeNumber(-1)"
+                alt="remove"
+            />
+            <p class="number">{{ props.value.count }}</p>
+            <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
         </div>
     </div>
 </template>
+
 <style lang="scss" scoped>
 .basket-item-card {
-    position: relative;
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 8px 0 0 0;
+    padding: 0 0 8px 0;
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #aaaaaa;
+    .item-name {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+        margin: auto;
+        height: 35px;
+        width: fit-content;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .item-price {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: auto 15px auto 0;
+        height: 19px;
+        width: fit-content;
+        font-size: 16px;
+        direction: rtl;
+    }
     .add-to-card {
         display: flex;
         position: relative;
-        flex-direction: row-reverse;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 4px 0;
-        border-radius: 20px;
+        margin: auto 15px auto 15px;
+        height: 35px;
+        width: fit-content;
+
         img {
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            margin: 0;
             box-shadow: 0 2px 5px 2px #00000055;
             background: #ffffff;
         }
-        .add {
-            margin: outo;
-        }
         .number {
-            display: flex;
             position: relative;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 25px;
             width: 40px;
-            font-size: 20px;
+            margin: 0 5px 0 5px;
+            font-size: 25px;
             text-align: center;
         }
     }

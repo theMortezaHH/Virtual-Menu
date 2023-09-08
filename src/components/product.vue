@@ -1,37 +1,14 @@
 <script setup>
-import { onMounted, ref } from "vue"
+import useDataStore from "../store/store"
 
 const props = defineProps({
     value: Object,
 })
-const count = ref(props.value.count)
-const id = "removable" + props.value.id
 
 function changeNumber(param) {
-    if (count.value + param < 0) return
-    if (count.value + param === 0) {
-        document.querySelector("#" + id + " .number").style.display = "none"
-        document.querySelector("#" + id + " .remove").style.display = "none"
-        document.querySelector("#" + id + " .add-to-basket-text").style.display = "block"
-    } else {
-        document.querySelector("#" + id + " .number").style.display = "block"
-        document.querySelector("#" + id + " .remove").style.display = "block"
-        document.querySelector("#" + id + " .add-to-basket-text").style.display = "none"
-    }
-    if (count.value + param === 1) {
-        document.querySelector("#" + id + " .remove").src = "src/assets/trash.svg"
-    } else {
-        document.querySelector("#" + id + " .remove").src = "src/assets/remove.svg"
-    }
-    count.value += param
-    const data = JSON.parse(localStorage.getItem("data"))
-    data.menuItems[props.value.id - 1].count = count.value
-    localStorage.setItem("data", JSON.stringify(data))
+    if (props.value.count + param < 0) return
+    useDataStore().data.menuItems[props.value.id].count += param
 }
-
-onMounted(() => {
-    changeNumber(0)
-})
 </script>
 
 <template>
@@ -43,15 +20,29 @@ onMounted(() => {
                 <p class="item-price">{{ props.value.price }} تومان</p>
                 <p class="item-time">{{ props.value.duration }} دقیقه</p>
             </div>
-            <div class="add-to-card" :id="id">
+            <div class="add-to-card">
                 <img
                     class="remove"
+                    v-if="props.value.count > 1"
                     src="src/assets/remove.svg"
                     @click="changeNumber(-1)"
                     alt="remove"
                 />
-                <p class="add-to-basket-text" @click="changeNumber(1)">افزودن به سبد خرید</p>
-                <p class="number">{{ count }}</p>
+                <img
+                    class="remove"
+                    v-if="props.value.count === 1"
+                    src="src/assets/trash.svg"
+                    @click="changeNumber(-1)"
+                    alt="remove"
+                />
+                <p
+                    class="add-to-basket-text"
+                    v-if="props.value.count === 0"
+                    @click="changeNumber(1)"
+                >
+                    افزودن به سبد خرید
+                </p>
+                <p class="number" v-if="props.value.count > 0">{{ props.value.count }}</p>
                 <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
             </div>
         </div>
@@ -134,7 +125,7 @@ onMounted(() => {
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            margin: auto;
+            margin: auto 15px auto auto;
             height: 35px;
             width: fit-content;
             padding: 0 4px;
@@ -165,7 +156,7 @@ onMounted(() => {
                 align-items: center;
                 height: 25px;
                 width: 40px;
-                margin: 0 10px 10px 10px;
+                margin: 0 10px 0 10px;
                 font-size: 25px;
                 text-align: center;
             }

@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
     value: Object,
     selected: Boolean,
 })
@@ -8,8 +8,8 @@ defineProps({
 <template>
     <div class="category-card">
         <div :class="{ selected }">
-            <img :src="value.image" />
-            <p>{{ value.title }}</p>
+            <img :src="props.value.image" />
+            <p>{{ props.value.title }}</p>
         </div>
     </div>
 </template>
