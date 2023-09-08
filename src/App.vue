@@ -1,32 +1,18 @@
 <script setup>
-import { onMounted, ref, computed } from "vue"
+import { ref, computed } from "vue"
+import useDataStore from "./store/store.js"
 import MenuCategory from "./components/menu-category.vue"
 import Product from "./components/product.vue"
 import Basket from "./components/basket.vue"
 
-const categoryItems = ref([])
-const menuItems = ref([])
 const selectedIndex = ref(0)
-var data = ref({})
-
-onMounted(() => {
-    getData()
-})
-
-async function getData() {
-    const response = await fetch("src/database/MenuData.obj")
-    data.value = await response.json()
-    for (let index = 0; index < data.value.menuItems.length; index++) {
-        data.value.menuItems[index].count = 0
-    }
-    categoryItems.value = data.value.categoryItems
-    menuItems.value = data.value.menuItems
-}
 
 const selectedCategoryItems = computed(() => {
-    if (!categoryItems.value.length) return
-    const selectedId = categoryItems.value[selectedIndex.value].id
-    return menuItems.value.filter((x) => x.categoryId === selectedId)
+    if (!useDataStore().data.categoryItems) {
+        return
+    }
+    const selectedId = useDataStore().data.categoryItems[selectedIndex.value].id
+    return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
 </script>
 
@@ -36,7 +22,7 @@ const selectedCategoryItems = computed(() => {
     </div>
     <div class="category">
         <MenuCategory
-            v-for="(item, index) in categoryItems"
+            v-for="(item, index) in useDataStore().data.categoryItems"
             :value="item"
             :selected="selectedIndex === index"
             :key="index"
