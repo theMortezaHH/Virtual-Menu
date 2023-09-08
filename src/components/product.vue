@@ -17,21 +17,21 @@ function changeNumber(param) {
         <div class="item-info">
             <p class="item-name">{{ props.value.title }}</p>
             <div>
-                <p class="item-price">{{ props.value.price }} تومان</p>
+                <p class="item-price">{{ $filters.price(props.value.price) }}</p>
                 <p class="item-time">{{ props.value.duration }} دقیقه</p>
             </div>
             <div class="add-to-card">
                 <img
                     class="remove"
                     v-if="props.value.count > 1"
-                    src="src/assets/remove.svg"
+                    src="@/assets/remove.svg"
                     @click="changeNumber(-1)"
                     alt="remove"
                 />
                 <img
                     class="remove"
                     v-if="props.value.count === 1"
-                    src="src/assets/trash.svg"
+                    src="@/assets/trash.svg"
                     @click="changeNumber(-1)"
                     alt="remove"
                 />
@@ -43,7 +43,7 @@ function changeNumber(param) {
                     افزودن به سبد خرید
                 </p>
                 <p class="number" v-if="props.value.count > 0">{{ props.value.count }}</p>
-                <img class="add" src="src/assets/add.svg" @click="changeNumber(1)" alt="add" />
+                <img class="add" src="@/assets/add.svg" @click="changeNumber(1)" alt="add" />
             </div>
         </div>
     </div>
