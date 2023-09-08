@@ -5,7 +5,7 @@ const useDataStore = defineStore("data", () => {
     const data = ref({})
 
     async function getData() {
-        const response = await fetch("src/database/MenuData.obj")
+        const response = await fetch("./database/MenuData.obj")
         data.value = await response.json()
         for (let index = 0; index < data.value.menuItems.length; index++) {
             data.value.menuItems[index].count = 0

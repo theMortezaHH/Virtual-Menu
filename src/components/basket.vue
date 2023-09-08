@@ -10,17 +10,17 @@ function ShowBasket() {
 <template>
     <div class="basket">
         <div class="basket-header" @click="ShowBasket()">
-            <img class="basket-icon" src="src/assets/basket.svg" />
+            <img class="basket-icon" src="@/assets/basket.svg" />
             <p class="items-in-basket" v-if="useDataStore().basketItemsCount > 0">
                 {{ useDataStore().basketItemsCount }}
             </p>
             <p class="items-total-price" v-if="useDataStore().basketTotalPrice > 0">
-                جمع کل: {{ useDataStore().basketTotalPrice }} تومان
+                جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}
             </p>
             <p class="items-total-price" v-if="useDataStore().basketTotalPrice === 0">
                 سبد خرید شما خالیست
             </p>
-            <img class="chevron" src="src/assets/chevron.svg" />
+            <img class="chevron" src="@/assets/chevron.svg" />
         </div>
         <div class="basket-item-container">
             <BasketItem

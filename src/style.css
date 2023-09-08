@@ -2,17 +2,16 @@
     font-family: "vazir";
     font-style: normal;
     font-weight: normal;
-    src: url("src/fonts/Vazir-FD.eot");
-    src: url("src/fonts/Vazir-FD.woff") format("woff"),
-        url("src/fonts/Vazir-FD.ttf") format("truetype");
+    src: url("@/fonts/Vazir-FD.eot");
+    src: url("@/fonts/Vazir-FD.woff") format("woff"), url("@/fonts/Vazir-FD.ttf") format("truetype");
 }
 @font-face {
     font-family: "vazir";
     font-style: normal;
     font-weight: bold;
-    src: url("src/fonts/Vazir-Bold-FD.eot");
-    src: url("src/fonts/Vazir-Bold-FD.woff") format("woff"),
-        url("src/fonts/Vazir-Bold-FD.ttf") format("truetype");
+    src: url("@/fonts/Vazir-Bold-FD.eot");
+    src: url("@/fonts/Vazir-Bold-FD.woff") format("woff"),
+        url("@/fonts/Vazir-Bold-FD.ttf") format("truetype");
 }
 * {
     box-sizing: border-box;
