@@ -11,6 +11,7 @@ const useDataStore = defineStore("data", () => {
             data.value.menuItems[index].count = 0
         }
     }
+    getData()
 
     const basketItems = computed(() => {
         if (!data.value.menuItems) return
@@ -37,8 +38,6 @@ const useDataStore = defineStore("data", () => {
         }
         return number
     })
-
-    getData()
 
     return { data, basketItems, basketItemsCount, basketTotalPrice }
 })

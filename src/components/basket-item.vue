@@ -3,10 +3,11 @@ import useDataStore from "../store/store"
 
 const props = defineProps({
     value: Object,
+    disabled: Boolean,
 })
 
 function changeNumber(param) {
-    if (props.value.count + param < 0) return
+    if (props.value.count + param < 0 || props.disabled === true) return
     useDataStore().data.menuItems[props.value.id].count += param
 }
 </script>
@@ -18,20 +19,26 @@ function changeNumber(param) {
         <div class="add-to-card">
             <img
                 class="remove"
-                v-if="props.value.count > 1"
+                v-if="(props.value.count > 1) & !props.disabled"
                 src="@/assets/remove.svg"
                 @click="changeNumber(-1)"
                 alt="remove"
             />
             <img
                 class="remove"
-                v-if="props.value.count === 1"
+                v-if="(props.value.count === 1) & !props.disabled"
                 src="@/assets/trash.svg"
                 @click="changeNumber(-1)"
                 alt="remove"
             />
             <p class="number">{{ props.value.count }}</p>
-            <img class="add" src="@/assets/add.svg" @click="changeNumber(1)" alt="add" />
+            <img
+                class="add"
+                v-if="!props.disabled"
+                src="@/assets/add.svg"
+                @click="changeNumber(1)"
+                alt="add"
+            />
         </div>
     </div>
 </template>

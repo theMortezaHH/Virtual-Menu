@@ -1,12 +1,11 @@
 <script setup>
-import { ref, computed } from "vue"
+import { onMounted, ref, computed } from "vue"
 import useDataStore from "@/store/store.js"
 import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
 import Basket from "@/components/basket.vue"
 
 const selectedIndex = ref(0)
-
 const selectedCategoryItems = computed(() => {
     if (!useDataStore().data.categoryItems) {
         return
@@ -14,7 +13,13 @@ const selectedCategoryItems = computed(() => {
     const selectedId = useDataStore().data.categoryItems[selectedIndex.value].id
     return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
-const calculatedHeight = window.innerHeight - 320
+const calculatedHeight = window.innerHeight - 260
+
+onMounted(() => {
+    setTimeout(() => {
+        document.querySelector(".header").classList.add("goSmall")
+    }, 1000)
+})
 </script>
 
 <template>
@@ -47,11 +52,19 @@ const calculatedHeight = window.innerHeight - 320
     align-items: center;
     height: 100px;
     width: 100%;
+    transition-duration: 0.5s;
 
     p {
         margin: auto 30px auto auto;
         font-size: 40px;
         font-weight: 500;
+        transition-duration: 0.5s;
+    }
+    &.goSmall {
+        height: 50px;
+        p {
+            font-size: 20px;
+        }
     }
 }
 
@@ -61,7 +74,7 @@ const calculatedHeight = window.innerHeight - 320
     flex-direction: row-reverse;
     justify-content: end;
     align-items: start;
-    height: 170px;
+    height: 160px;
     width: 100%;
     text-align: center;
     background: #ffffff;

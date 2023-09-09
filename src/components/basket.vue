@@ -26,12 +26,13 @@ function ShowBasket() {
             <BasketItem
                 v-for="(item, index) in useDataStore().basketItems"
                 :value="item"
+                :disabled="false"
                 :key="index"
             />
         </div>
-        <router-link class="go-to-card" v-if="useDataStore().basketItemsCount > 0" to="/cart"
-            >ثبت سفارش</router-link
-        >
+        <router-link class="go-to-card" v-if="useDataStore().basketItemsCount > 0" to="/cart">
+            ثبت سفارش
+        </router-link>
     </div>
 </template>
 

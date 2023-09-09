@@ -1,16 +1,19 @@
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import { createRouter, createWebHistory } from "vue-router"
+// import piniaPluginPersist from "pinia-plugin-persistedstate"
 import "./style.css"
 import App from "./App.vue"
 import Home from "@/pages/Home.vue"
 import Cart from "@/pages/Cart.vue"
+import Wait from "@/pages/Wait.vue"
 
 const pinia = createPinia()
 const app = createApp(App)
 const routes = [
     { path: "/", component: Home },
     { path: "/cart", component: Cart },
+    { path: "/wait", component: Wait },
 ]
 
 const router = createRouter({
@@ -24,6 +27,7 @@ app.config.globalProperties.$filters = {
     },
 }
 
+// pinia.use(piniaPluginPersist)
 app.use(router)
 app.use(pinia)
 app.mount("#app")
