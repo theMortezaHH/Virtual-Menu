@@ -58,7 +58,7 @@ function changeNumber(param) {
     align-items: center;
     height: 130px;
     width: 350px;
-    margin: 0 0 20px 0;
+    margin: 0 10px 20px 10px;
     background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 2px 5px 2px #00000055;

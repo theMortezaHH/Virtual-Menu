@@ -1,15 +1,25 @@
 <script setup>
+import { onMounted, ref } from "vue"
 import useDataStore from "../store/store"
 import BasketItem from "./basket-item.vue"
 
+const basketVisible = ref(false)
+
 function ShowBasket() {
-    document.querySelector(".basket").classList.toggle("show-basket")
+    if (!basketVisible.value) {
+        document.querySelector(".basket").classList.add("show-basket")
+        basketVisible.value = true
+    } else {
+        document.querySelector(".basket").classList.remove("show-basket")
+        basketVisible.value = false
+    }
 }
 </script>
 
 <template>
+    <div class="prevent-click" @click="ShowBasket" v-if="basketVisible"> </div>
     <div class="basket">
-        <div class="basket-header" @click="ShowBasket()">
+        <div class="basket-header" @click="ShowBasket">
             <img class="basket-icon" src="@/assets/basket.svg" />
             <p class="items-in-basket" v-if="useDataStore().basketItemsCount > 0">
                 {{ useDataStore().basketItemsCount }}
@@ -37,6 +47,14 @@ function ShowBasket() {
 </template>
 
 <style lang="scss" scoped>
+.prevent-click {
+    position: fixed;
+    height: 100dvh;
+    width: 100dvw;
+    backdrop-filter: blur(5px);
+    top: 0;
+    left: 0;
+}
 .basket {
     position: fixed;
     display: flex;
@@ -66,7 +84,7 @@ function ShowBasket() {
         justify-content: center;
         align-items: center;
         margin: 0;
-        height: 50px;
+        height: 65px;
         width: 100%;
         background: #ffffff;
 
