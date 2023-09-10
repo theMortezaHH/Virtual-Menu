@@ -5,6 +5,7 @@ import BasketItem from "../components/basket-item.vue"
 
 <template>
     <div class="container">
+        <img src="@/assets/checkmark.svg" class="checkmark" />
         <div class="header">
             <p class="header-title"
                 >سفارش شما ثبت شد <br />
@@ -20,6 +21,7 @@ import BasketItem from "../components/basket-item.vue"
                 :key="index"
             />
             <p class="total-price">جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}</p>
+            <img class="loading" src="@/assets/loading.svg" />
         </div>
     </div>
 </template>
@@ -31,6 +33,12 @@ import BasketItem from "../components/basket-item.vue"
     flex-direction: column;
     height: 100dvh;
     width: 100%;
+    .checkmark {
+        width: 80px;
+        margin: 20px auto 0 auto;
+        background-color: #00ff00;
+        border-radius: 50%;
+    }
     .header {
         display: flex;
         flex-direction: row;
@@ -43,7 +51,7 @@ import BasketItem from "../components/basket-item.vue"
             font-size: 30px;
             font-weight: bold;
             direction: rtl;
-            margin: 30px auto 30px auto;
+            margin: 10px auto 30px auto;
         }
     }
     .cart-items {
@@ -60,6 +68,9 @@ import BasketItem from "../components/basket-item.vue"
             font-size: 20px;
             font-weight: bold;
             margin-top: 20px;
+        }
+        .loading {
+            width: 50px;
         }
     }
 }
