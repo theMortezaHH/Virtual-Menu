@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import "./style.css"
 import App from "./App.vue"
 import Home from "@/pages/Home.vue"
+import Info from "@/pages/Info.vue"
 import Cart from "@/pages/Cart.vue"
 import Wait from "@/pages/Wait.vue"
 
@@ -12,6 +13,7 @@ const pinia = createPinia()
 const app = createApp(App)
 const routes = [
     { path: "/", component: Home },
+    { path: "/info/:name", component: Info },
     { path: "/cart", component: Cart },
     { path: "/wait", component: Wait },
 ]
