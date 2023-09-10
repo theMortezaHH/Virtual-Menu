@@ -8,6 +8,7 @@ import Home from "@/pages/Home.vue"
 import Info from "@/pages/Info.vue"
 import Cart from "@/pages/Cart.vue"
 import Wait from "@/pages/Wait.vue"
+import NotFound from "@/pages/NotFound.vue"
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -16,6 +17,7 @@ const routes = [
     { path: "/info/:name", component: Info },
     { path: "/cart", component: Cart },
     { path: "/wait", component: Wait },
+    { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ]
 
 const router = createRouter({
