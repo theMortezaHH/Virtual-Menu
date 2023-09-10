@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted, ref, computed } from "vue"
+import { onMounted, ref, computed, watch } from "vue"
 import useDataStore from "@/store/store.js"
 import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
 import Basket from "@/components/basket.vue"
+
 
 const selectedIndex = ref(0)
 const selectedCategoryItems = computed(() => {
@@ -13,7 +14,7 @@ const selectedCategoryItems = computed(() => {
     const selectedId = useDataStore().data.categoryItems[selectedIndex.value].id
     return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
-const calculatedHeight = window.innerHeight - 260
+const windowHight = window.innerHeight
 
 onMounted(() => {
     setTimeout(() => {
@@ -28,27 +29,38 @@ onMounted(() => {
             <p>منوی مجازی</p>
         </div>
         <div class="category">
-            <MenuCategory
-                v-for="(item, index) in useDataStore().data.categoryItems"
-                :value="item"
-                :selected="selectedIndex === index"
-                :key="index"
-                @click="selectedIndex = index"
-            />
+            <MenuCategory v-for="(item, index) in useDataStore().data.categoryItems" :value="item"
+                :selected="selectedIndex === index" :key="index" @click="selectedIndex = index" />
         </div>
 
-        <div class="product-container" :style="{ height: calculatedHeight + 'px' }">
+        <div class="product-container" :style="{ height: windowHight + 'px' }">
             <Product v-for="item in selectedCategoryItems" :value="item" :key="item.id" />
+            <div style="height: 200px;"></div>
         </div>
     </div>
-
-    <Basket />
+    <Transition name="basket-transition">
+        <Basket v-if="useDataStore().basketItemsCount > 0" />
+    </Transition>
 </template>
 
 <style lang="scss" scoped>
+.basket-transition-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.basket-transition-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.basket-transition-enter-from,
+.basket-transition-leave-to {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
 .container {
     height: 100dvh;
     width: 100dvw;
+
     .header {
         display: flex;
         position: relative;
@@ -65,8 +77,10 @@ onMounted(() => {
             font-weight: 500;
             transition-duration: 0.5s;
         }
+
         &.goSmall {
             height: 50px;
+
             p {
                 font-size: 20px;
             }
@@ -87,6 +101,7 @@ onMounted(() => {
         border-bottom: 1px solid #c0c0c0;
         overflow: auto;
     }
+
     .product-container {
         position: relative;
         display: flex;

@@ -17,32 +17,30 @@ function ShowBasket() {
 </script>
 
 <template>
-    <div class="prevent-click" @click="ShowBasket" v-if="basketVisible"> </div>
-    <div class="basket">
-        <div class="basket-header" @click="ShowBasket">
-            <img class="basket-icon" src="@/assets/basket.svg" />
-            <p class="items-in-basket" v-if="useDataStore().basketItemsCount > 0">
-                {{ useDataStore().basketItemsCount }}
-            </p>
-            <p class="items-total-price" v-if="useDataStore().basketTotalPrice > 0">
-                جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}
-            </p>
-            <p class="items-total-price" v-if="useDataStore().basketTotalPrice === 0">
-                سبد خرید شما خالیست
-            </p>
-            <img class="chevron" src="@/assets/chevron.svg" />
+    <div>
+        <div class="prevent-click" @click="ShowBasket" v-if="basketVisible"> </div>
+        <div class="basket">
+            <div class="basket-header" @click="ShowBasket">
+                <img class="basket-icon" src="@/assets/basket.svg" />
+                <p class="items-in-basket" v-if="useDataStore().basketItemsCount > 0">
+                    {{ useDataStore().basketItemsCount }}
+                </p>
+                <p class="items-total-price" v-if="useDataStore().basketTotalPrice > 0">
+                    جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}
+                </p>
+                <p class="items-total-price" v-if="useDataStore().basketTotalPrice === 0">
+                    سبد خرید شما خالیست
+                </p>
+                <img class="chevron" src="@/assets/chevron.svg" />
+            </div>
+            <div class="basket-item-container">
+                <BasketItem v-for="(item, index) in useDataStore().basketItems" :value="item" :disabled="false"
+                    :key="index" />
+            </div>
+            <router-link class="go-to-card" v-if="useDataStore().basketItemsCount > 0" to="/cart">
+                ثبت سفارش
+            </router-link>
         </div>
-        <div class="basket-item-container">
-            <BasketItem
-                v-for="(item, index) in useDataStore().basketItems"
-                :value="item"
-                :disabled="false"
-                :key="index"
-            />
-        </div>
-        <router-link class="go-to-card" v-if="useDataStore().basketItemsCount > 0" to="/cart">
-            ثبت سفارش
-        </router-link>
     </div>
 </template>
 
@@ -55,6 +53,7 @@ function ShowBasket() {
     top: 0;
     left: 0;
 }
+
 .basket {
     position: fixed;
     display: flex;
@@ -65,18 +64,21 @@ function ShowBasket() {
     height: 400px;
     width: 100%;
     background: #ffffff;
-    box-shadow: 0 1px 5px 3px #00000066;
+    box-shadow: 0 1px 10px 3px #00000066;
     transition-duration: 0.3s;
 
     &.show-basket {
         bottom: 0px;
+
         .basket-header {
             border-bottom: 1px solid #aaaaaa;
+
             .chevron {
                 transform: rotate(180deg);
             }
         }
     }
+
     .basket-header {
         position: relative;
         display: flex;
@@ -92,6 +94,7 @@ function ShowBasket() {
             width: 30px;
             margin: 0 0 0 30px;
         }
+
         .items-in-basket {
             display: flex;
             justify-content: center;
@@ -106,10 +109,12 @@ function ShowBasket() {
             background: #ff0000;
             border-radius: 50%;
         }
+
         .items-total-price {
             font-size: 19px;
             margin: auto;
         }
+
         .chevron {
             width: 25px;
             margin: 0 30px 0 0;
@@ -117,6 +122,7 @@ function ShowBasket() {
             transform: rotate(0deg);
         }
     }
+
     .basket-item-container {
         display: flex;
         position: relative;
@@ -127,6 +133,7 @@ function ShowBasket() {
         width: 100%;
         overflow: auto;
     }
+
     .go-to-card {
         display: flex;
         position: relative;
