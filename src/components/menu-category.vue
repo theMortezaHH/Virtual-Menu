@@ -23,7 +23,6 @@ const props = defineProps({
     align-items: center;
     height: 150px;
     width: 100px;
-    margin-top: 5px;
 
     div {
         display: flex;
