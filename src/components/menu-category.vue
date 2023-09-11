@@ -34,7 +34,7 @@ const props = defineProps({
         width: 90px;
         border-radius: 15px;
         margin: 0 10px;
-        background-color: #f5f5f5;
+        background: var(--box);
         box-shadow: 0 0 0 0;
         transition-duration: 0.1s;
 
@@ -51,7 +51,7 @@ const props = defineProps({
     }
 
     .selected {
-        box-shadow: 0 2px 5px 2px #00000055;
+        box-shadow: 0 2px 5px 2px var(--shadow);
     }
 }
 </style>

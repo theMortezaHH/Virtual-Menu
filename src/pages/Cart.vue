@@ -46,9 +46,9 @@ import BasketItem from "@/components/basket-item.vue"
             height: 30px;
             width: 30px;
             margin: auto auto auto 10px;
-            background: #f5f5f5;
+            background: var(--box);
             border-radius: 10px;
-            box-shadow: 0 2px 5px 2px #00000055;
+            box-shadow: 0 2px 5px 2px var(--shadow);
             .back-button {
                 width: 30px;
                 margin-left: -2px;
@@ -71,7 +71,7 @@ import BasketItem from "@/components/basket-item.vue"
         height: 100%;
         width: 100%;
         overflow: auto;
-        border-top: 1px solid #aaaaaa;
+        border-top: 1px solid var(--border);
         .total-price {
             font-size: 20px;
             font-weight: bold;
@@ -87,9 +87,8 @@ import BasketItem from "@/components/basket-item.vue"
         margin: auto auto 10px auto;
         height: 50px;
         width: 240px;
-        background: #f5f5f5;
-        color: #000000;
-        box-shadow: 0 2px 5px 2px #00000055;
+        background: var(--box);
+        box-shadow: 0 2px 5px 2px var(--shadow);
         border-radius: 10px;
         text-decoration: none;
     }

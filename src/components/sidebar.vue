@@ -39,8 +39,8 @@ function ShowSidebar() {
     bottom: 0;
     height: 100%;
     width: 160px;
-    background: #ffffff;
-    box-shadow: 0 2px 5px 2px #00000055;
+    background: var(--background);
+    box-shadow: 0 2px 5px 2px var(--shadow);
     transition-duration: 0.3s;
 
     &.show-sidebar {

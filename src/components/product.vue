@@ -66,9 +66,9 @@ function route() {
     height: 130px;
     width: 350px;
     margin: 0 10px 20px 10px;
-    background: #ffffff;
+    background: var(--background);
     border-radius: 15px;
-    box-shadow: 0 2px 5px 2px #00000055;
+    box-shadow: 0 2px 5px 2px var(--shadow);
     .item-img {
         height: 122px;
         width: 122px;
@@ -136,9 +136,9 @@ function route() {
             height: 35px;
             width: fit-content;
             padding: 0 4px;
-            background: #f5f5f5;
+            background: var(--background);
             border-radius: 20px;
-            box-shadow: 0 2px 5px 2px #00000055;
+            box-shadow: 0 2px 5px 2px var(--shadow);
             .add-to-basket-text {
                 position: relative;
                 display: flex;
@@ -152,8 +152,8 @@ function route() {
                 width: 26px;
                 height: 26px;
                 border-radius: 50%;
-                box-shadow: 0 2px 5px 2px #00000055;
-                background: #ffffff;
+                box-shadow: 0 2px 5px 2px var(--shadow);
+                background: var(--background);
             }
             .number {
                 position: relative;
