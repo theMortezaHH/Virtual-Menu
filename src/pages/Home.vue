@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted, ref, computed } from "vue"
+import { ref, computed } from "vue"
 import useDataStore from "@/store/store.js"
 import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
 import Basket from "@/components/basket.vue"
+import Sidebar from "@/components/sidebar.vue"
 
 const selectedIndex = ref(0)
 const selectedCategoryItems = computed(() => {
@@ -14,12 +15,6 @@ const selectedCategoryItems = computed(() => {
     return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 260
-
-onMounted(() => {
-    setTimeout(() => {
-        document.querySelector(".header").classList.add("goSmall")
-    }, 500)
-})
 </script>
 
 <template>
@@ -43,6 +38,7 @@ onMounted(() => {
     </div>
 
     <Basket />
+    <Sidebar />
 </template>
 
 <style lang="scss" scoped>
@@ -52,24 +48,19 @@ onMounted(() => {
     .header {
         display: flex;
         position: relative;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        height: 100px;
+        height: 70px;
         width: 100%;
-        transition-duration: 0.5s;
-
         p {
-            margin: auto 30px auto auto;
-            font-size: 40px;
+            margin: auto 80px auto auto;
+            font-size: 25px;
             font-weight: 500;
-            transition-duration: 0.5s;
         }
-        &.goSmall {
-            height: 50px;
-            p {
-                font-size: 20px;
-            }
+        .menu-icon {
+            width: 30px;
+            margin: auto 20px auto 0;
         }
     }
 

@@ -1,5 +1,5 @@
 <script setup>
-import useDataStore from "../store/store"
+import useDataStore from "@/store/store.js"
 
 const props = defineProps({
     value: Object,
