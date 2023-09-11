@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, ref } from "vue"
-import useDataStore from "../store/store"
-import BasketItem from "./basket-item.vue"
+import { ref } from "vue"
+import useDataStore from "@/store/store.js"
+import BasketItem from "@/components/basket-item.vue"
 
 const basketVisible = ref(false)
 
@@ -65,7 +65,7 @@ function ShowBasket() {
     height: 400px;
     width: 100%;
     background: #ffffff;
-    box-shadow: 0 1px 5px 3px #00000066;
+    box-shadow: 0 2px 5px 2px #00000055;
     transition-duration: 0.3s;
 
     &.show-basket {

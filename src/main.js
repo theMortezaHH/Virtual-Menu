@@ -14,7 +14,7 @@ const pinia = createPinia()
 const app = createApp(App)
 const routes = [
     { path: "/", component: Home },
-    { path: "/info/:name", component: Info },
+    { path: "/info/:id", component: Info },
     { path: "/cart", component: Cart },
     { path: "/wait", component: Wait },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },

@@ -1,6 +1,6 @@
 <script setup>
-import useDataStore from "../store/store"
-import BasketItem from "../components/basket-item.vue"
+import useDataStore from "@/store/store.js"
+import BasketItem from "@/components/basket-item.vue"
 </script>
 
 <template>

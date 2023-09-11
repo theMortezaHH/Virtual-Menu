@@ -1,19 +1,26 @@
 <script setup>
-import useDataStore from "../store/store"
+import { useRouter } from "vue-router"
+import useDataStore from "@/store/store.js"
 
 const props = defineProps({
     value: Object,
 })
+const router = useRouter()
 
 function changeNumber(param) {
     if (props.value.count + param < 0) return
     useDataStore().data.menuItems[props.value.id].count += param
 }
+
+function route() {
+    // router.push("/info/" + props.value.id)
+    return
+}
 </script>
 
 <template>
     <div class="item">
-        <img class="item-img" :src="props.value.image" />
+        <img class="item-img" :src="props.value.image" @click="route()" />
         <div class="item-info">
             <p class="item-name">{{ props.value.title }}</p>
             <div>
