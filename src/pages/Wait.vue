@@ -36,7 +36,7 @@ import BasketItem from "@/components/basket-item.vue"
     .checkmark {
         width: 80px;
         margin: 20px auto 0 auto;
-        background-color: #00ff00;
+        background: #00ff00;
         border-radius: 50%;
     }
     .header {
@@ -63,7 +63,7 @@ import BasketItem from "@/components/basket-item.vue"
         height: 100%;
         width: 100%;
         overflow: auto;
-        border-top: 1px solid #aaaaaa;
+        border-top: 1px solid var(--border);
         .total-price {
             font-size: 20px;
             font-weight: bold;

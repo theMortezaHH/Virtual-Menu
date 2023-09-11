@@ -73,9 +73,9 @@ const calculatedHeight = window.innerHeight - 260
         height: 160px;
         width: 100%;
         text-align: center;
-        background: #ffffff;
-        border-top: 1px solid #c0c0c0;
-        border-bottom: 1px solid #c0c0c0;
+        background: var(--background);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
         overflow: auto;
     }
     .product-container {

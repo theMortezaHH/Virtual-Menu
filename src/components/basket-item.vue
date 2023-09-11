@@ -54,7 +54,7 @@ function changeNumber(param) {
     padding: 0 0 8px 0;
     height: 40px;
     width: 100%;
-    border-bottom: 1px solid #aaaaaa;
+    border-bottom: 1px solid var(--border);
     .item-name {
         display: flex;
         position: relative;
@@ -93,8 +93,8 @@ function changeNumber(param) {
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            box-shadow: 0 2px 5px 2px #00000055;
-            background: #ffffff;
+            box-shadow: 0 2px 5px 2px var(--shadow);
+            background: var(--background);
         }
         .number {
             position: relative;

@@ -64,14 +64,14 @@ function ShowBasket() {
     bottom: -350px;
     height: 400px;
     width: 100%;
-    background: #ffffff;
-    box-shadow: 0 2px 5px 2px #00000055;
+    background: var(--background);
+    box-shadow: 0 2px 5px 2px var(--shadow);
     transition-duration: 0.3s;
 
     &.show-basket {
         bottom: 0px;
         .basket-header {
-            border-bottom: 1px solid #aaaaaa;
+            border-bottom: 1px solid var(--border);
             .chevron {
                 transform: rotate(180deg);
             }
@@ -86,7 +86,7 @@ function ShowBasket() {
         margin: 0;
         height: 65px;
         width: 100%;
-        background: #ffffff;
+        background: var(--background);
 
         .basket-icon {
             width: 30px;
@@ -136,9 +136,8 @@ function ShowBasket() {
         margin: 0 0 10px 0;
         height: 50px;
         width: 240px;
-        background: #f5f5f5;
-        color: #000000;
-        box-shadow: 0 2px 5px 2px #00000055;
+        background: var(--box);
+        box-shadow: 0 2px 5px 2px var(--shadow);
         border-radius: 10px;
         text-decoration: none;
     }
