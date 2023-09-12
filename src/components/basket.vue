@@ -89,6 +89,7 @@ function ShowBasket() {
     width: 100%;
     background: var(--background);
     box-shadow: 0 2px 5px 2px var(--shadow);
+    border-top: 1px solid var(--border);
     transition-duration: 0.3s;
 
     &.show-basket {

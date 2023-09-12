@@ -77,9 +77,8 @@ import BasketItem from "@/components/basket-item.vue"
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        height: 100%;
+        height: 80px;
         width: 100%;
-        overflow: auto;
         border-top: 1px solid var(--border);
         .total-price {
             font-size: 20px;
