@@ -33,13 +33,35 @@ body.light-theme {
     --border: #aaaaaa;
     --shadow: #00000055;
     --text: #000000;
+    --icon: #000000;
 }
+
+/* change the dark, x and y color theme */
+/* if you want a theme to apply, change class of the body element in index.html file */
+
 body.dark-theme {
     --background: #000000;
     --box: #1a1a1a;
     --border: #5f5f5f;
     --shadow: #ffffff55;
     --text: #ffffff;
+    --icon: #ffffff;
+}
+body.x-theme {
+    --background: #000000;
+    --box: #1a1a1a;
+    --border: #5f5f5f;
+    --shadow: #ffffff55;
+    --text: #ffffff;
+    --icon: #ffffff;
+}
+body.y-theme {
+    --background: #000000;
+    --box: #1a1a1a;
+    --border: #5f5f5f;
+    --shadow: #ffffff55;
+    --text: #ffffff;
+    --icon: #ffffff;
 }
 
 body {

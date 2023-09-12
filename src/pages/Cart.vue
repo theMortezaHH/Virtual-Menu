@@ -7,7 +7,15 @@ import BasketItem from "@/components/basket-item.vue"
     <div class="container">
         <div class="header">
             <router-link class="back-button-container" to="/">
-                <img class="back-button" src="@/assets/chevron.svg" alt="back" />
+                <svg viewBox="0 0 512 512" class="back-button">
+                    <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="48"
+                        d="M112 328l144-144 144 144"
+                    />
+                </svg>
             </router-link>
             <p class="header-title">لیست سفارشات شما:</p>
         </div>
@@ -53,6 +61,7 @@ import BasketItem from "@/components/basket-item.vue"
                 width: 30px;
                 margin-left: -2px;
                 transform: rotate(-90deg);
+                stroke: var(--icon);
             }
         }
         .header-title {
