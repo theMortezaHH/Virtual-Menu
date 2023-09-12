@@ -52,6 +52,7 @@ const props = defineProps({
 
     .selected {
         box-shadow: 0 2px 5px 2px var(--shadow);
+        border: 1px solid var(--border);
     }
 }
 </style>

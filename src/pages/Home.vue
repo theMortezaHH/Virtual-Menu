@@ -14,7 +14,7 @@ const selectedCategoryItems = computed(() => {
     const selectedId = useDataStore().data.categoryItems[selectedIndex.value].id
     return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
-const calculatedHeight = window.innerHeight - 260
+const calculatedHeight = window.innerHeight - 280
 </script>
 
 <template>
@@ -63,7 +63,6 @@ const calculatedHeight = window.innerHeight - 260
             margin: auto 20px auto 0;
         }
     }
-
     .category {
         display: flex;
         position: relative;
