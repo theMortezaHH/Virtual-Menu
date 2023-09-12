@@ -5,7 +5,23 @@ import BasketItem from "@/components/basket-item.vue"
 
 <template>
     <div class="container">
-        <img src="@/assets/checkmark.svg" class="checkmark" />
+        <svg viewBox="0 0 512 512" class="checkmark">
+            <title>Checkmark Circle</title>
+            <path
+                d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                fill="none"
+                stroke-miterlimit="10"
+                stroke-width="32"
+            />
+            <path
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+                d="M352 176L217.6 336 160 272"
+            />
+        </svg>
+
         <div class="header">
             <p class="header-title"
                 >سفارش شما ثبت شد <br />
@@ -35,9 +51,10 @@ import BasketItem from "@/components/basket-item.vue"
     width: 100%;
     .checkmark {
         width: 80px;
+        height: 80px;
         margin: 20px auto 0 auto;
-        background: #00ff00;
         border-radius: 50%;
+        stroke: var(--icon);
     }
     .header {
         display: flex;

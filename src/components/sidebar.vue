@@ -15,7 +15,16 @@ function ShowSidebar() {
 </script>
 
 <template>
-    <img class="menu-icon" src="@/assets/menu.svg" @click="ShowSidebar" />
+    <svg viewBox="0 0 512 512" class="menu-icon" @click="ShowSidebar">
+        <title>Menu</title>
+        <path
+            fill="none"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            stroke-width="48"
+            d="M88 152h336M88 256h336M88 360h336"
+        />
+    </svg>
     <div class="prevent-click" @click="ShowSidebar" v-if="sidebarVisible"> </div>
     <div class="sidebar" @click="ShowSidebar"> </div>
 </template>
@@ -52,5 +61,6 @@ function ShowSidebar() {
     width: 30px;
     right: 20px;
     top: 20px;
+    stroke: var(--icon);
 }
 </style>

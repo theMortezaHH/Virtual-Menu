@@ -20,7 +20,21 @@ function ShowBasket() {
     <div class="prevent-click" @click="ShowBasket" v-if="basketVisible"> </div>
     <div class="basket">
         <div class="basket-header" @click="ShowBasket">
-            <img class="basket-icon" src="@/assets/basket.svg" />
+            <svg viewBox="0 0 512 512" class="basket-icon">
+                <title>Basket</title>
+                <path
+                    d="M68.4 192A20.38 20.38 0 0048 212.2a17.87 17.87 0 00.8 5.5L100.5 400a40.46 40.46 0 0039.1 29.5h232.8a40.88 40.88 0 0039.3-29.5l51.7-182.3.6-5.5a20.38 20.38 0 00-20.4-20.2H68.4zm193.32 160.07A42.07 42.07 0 11304 310a42.27 42.27 0 01-42.28 42.07z"
+                    fill="none"
+                    stroke-linejoin="round"
+                    stroke-width="32"
+                />
+                <path
+                    fill="none"
+                    stroke-linejoin="round"
+                    stroke-width="32"
+                    d="M160 192l96-128 96 128"
+                />
+            </svg>
             <p class="items-in-basket" v-if="useDataStore().basketItemsCount > 0">
                 {{ useDataStore().basketItemsCount }}
             </p>
@@ -30,7 +44,16 @@ function ShowBasket() {
             <p class="items-total-price" v-if="useDataStore().basketTotalPrice === 0">
                 سبد خرید شما خالیست
             </p>
-            <img class="chevron" src="@/assets/chevron.svg" />
+            <svg viewBox="0 0 512 512" class="chevron">
+                <title>Chevron Up</title>
+                <path
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="48"
+                    d="M112 328l144-144 144 144"
+                />
+            </svg>
         </div>
         <div class="basket-item-container">
             <BasketItem
@@ -91,6 +114,7 @@ function ShowBasket() {
         .basket-icon {
             width: 30px;
             margin: 0 0 0 30px;
+            stroke: var(--icon);
         }
         .items-in-basket {
             display: flex;
@@ -115,6 +139,7 @@ function ShowBasket() {
             margin: 0 30px 0 0;
             transition-duration: 0.3s;
             transform: rotate(0deg);
+            stroke: var(--icon);
         }
     }
     .basket-item-container {
