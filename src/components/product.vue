@@ -110,7 +110,8 @@ function route() {
     height: 130px;
     width: 350px;
     margin: 0 10px 20px 10px;
-    background: var(--background);
+    background: var(--box);
+    border: 1px solid var(--border);
     border-radius: 15px;
     box-shadow: 0 2px 5px 2px var(--shadow);
     .item-img {
