@@ -1,6 +1,16 @@
 <script setup>
 import useDataStore from "@/store/store.js"
 import BasketItem from "@/components/basket-item.vue"
+
+function SetOrder() {
+    useDataStore().order = useDataStore().basketItems
+    const data = new FormData()
+    data.append("moz", useDataStore().order)
+    fetch("pageData", {
+        method: "POST",
+        body: data,
+    })
+}
 </script>
 
 <template>
@@ -17,7 +27,7 @@ import BasketItem from "@/components/basket-item.vue"
                     />
                 </svg>
             </router-link>
-            <p class="header-title">لیست سفارشات شما:</p>
+            <p class="header-title">لیست سفارش شما:</p>
         </div>
 
         <div class="cart-items">
@@ -30,7 +40,12 @@ import BasketItem from "@/components/basket-item.vue"
             <p class="total-price">جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}</p>
         </div>
 
-        <router-link class="go-to-wait" v-if="useDataStore().basketItemsCount > 0" to="/wait">
+        <router-link
+            class="go-to-wait"
+            v-if="useDataStore().basketItemsCount > 0"
+            @click="SetOrder()"
+            to="/wait"
+        >
             تایید سفارش
         </router-link>
     </div>
@@ -93,7 +108,7 @@ import BasketItem from "@/components/basket-item.vue"
         justify-content: center;
         align-items: center;
         margin: auto auto 10px auto;
-        height: 50px;
+        height: 37px;
         width: 240px;
         background: var(--box);
         box-shadow: 0 2px 5px 2px var(--shadow);

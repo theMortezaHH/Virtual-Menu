@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue"
+import { useRouter } from "vue-router"
 import useDataStore from "@/store/store.js"
 import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
@@ -15,12 +16,21 @@ const selectedCategoryItems = computed(() => {
     return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 280
+const router = useRouter()
+
+function route() {
+    router.push("/wait")
+}
 </script>
 
 <template>
     <div class="container">
         <div class="header">
-            <p>منوی مجازی</p>
+            <div class="orderInfo" v-if="!!useDataStore().order[0]" @click="route()">
+                <img class="loading" src="@/assets/loading.svg" />
+                <p class="orderTitle">سفارش:</p>
+            </div>
+            <p class="headerTitle">منوی مجازی</p>
         </div>
         <div class="category">
             <MenuCategory
@@ -45,6 +55,7 @@ const calculatedHeight = window.innerHeight - 280
 .container {
     height: 100dvh;
     width: 100dvw;
+
     .header {
         display: flex;
         position: relative;
@@ -53,10 +64,26 @@ const calculatedHeight = window.innerHeight - 280
         align-items: center;
         height: 70px;
         width: 100%;
-        p {
+        .orderInfo {
+            display: flex;
+            flex-direction: row;
+            margin: auto 0 auto 20px;
+            padding: 5px 10px 5px 5px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            .loading {
+                width: 35px;
+                margin: auto 0 auto 0px;
+            }
+            .orderTitle {
+                margin: auto 0 auto 0;
+                font-size: 18px;
+                direction: rtl;
+            }
+        }
+        .headerTitle {
             margin: auto 80px auto auto;
             font-size: 25px;
-            font-weight: 500;
         }
         .menu-icon {
             width: 30px;
