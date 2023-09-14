@@ -31,14 +31,18 @@ import BasketItem from "@/components/basket-item.vue"
 
         <div class="cart-items">
             <BasketItem
-                v-for="(item, index) in useDataStore().basketItems"
+                v-for="(item, index) in useDataStore().order"
                 :value="item"
                 :disabled="true"
                 :key="index"
             />
-            <p class="total-price">جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}</p>
+            <p class="total-price">جمع کل: {{ $filters.price(useDataStore().orderTotalPrice) }}</p>
             <img class="loading" src="@/assets/loading.svg" />
         </div>
+
+        <router-link class="go-to-home" v-if="useDataStore().orderItemsCount > 0" to="/">
+            برگشت به منو
+        </router-link>
     </div>
 </template>
 
@@ -89,6 +93,20 @@ import BasketItem from "@/components/basket-item.vue"
         .loading {
             width: 50px;
         }
+    }
+    .go-to-home {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: auto auto 10px auto;
+        height: 50px;
+        width: 240px;
+        background: var(--box);
+        box-shadow: 0 2px 5px 2px var(--shadow);
+        border-radius: 10px;
+        text-decoration: none;
     }
 }
 </style>
