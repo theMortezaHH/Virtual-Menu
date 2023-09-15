@@ -1,6 +1,7 @@
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import { createRouter, createWebHistory } from "vue-router"
+import  orderStore from './store/order-store.js'
 import "./style.css"
 import App from "./App.vue"
 import Home from "@/pages/Home.vue"
@@ -27,13 +28,14 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (from.path === "/order") {
-        router.push("/order")
+    // if (from.path === "/order") {
+    //     router.push("/order")
+    // }
+    if (to.path !== '/order') {
+        if (orderStore().order.length !== undefined) {
+            next(false)
+        }
     }
-    // if (to.path === "/" || to.path === "/cart") {
-    //     if (orderStore().order.length !== undefined) {
-    //         router.push("/order")
-    //     }
     // }
     next()
 })
