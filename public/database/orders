@@ -28,6 +28,35 @@
                 "price": 40000,
                 "count": 3
             }
+        ],
+        [
+            {
+                "id": 0,
+                "categoryId": 0,
+                "image": "/assets/pepperoni-pizza.jpg",
+                "title": "پیتزا پپرونی",
+                "duration": 30,
+                "price": 135000,
+                "count": 2
+            },
+            {
+                "id": 4,
+                "categoryId": 1,
+                "image": "/assets/sandwich.jpg",
+                "title": "همبرگر",
+                "duration": 20,
+                "price": 87000,
+                "count": 1
+            },
+            {
+                "id": 5,
+                "categoryId": 2,
+                "image": "/assets/tea.jpg",
+                "title": "چای ماسالا",
+                "duration": 5,
+                "price": 40000,
+                "count": 3
+            }
         ]
     ]
 }
