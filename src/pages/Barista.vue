@@ -1,17 +1,20 @@
 <script setup>
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
 
 const data = ref({})
 
-async function GetData() {
-    const response = await fetch("./database/orders")
+async function getData() {
+    const response = await fetch("../database/orders")
     data.value = await response.json()
-    console.log(data.value)
 }
 
-console.log(data.value)
+onMounted(() => {
+    getData()
+})
 </script>
 
-<template> </template>
+<template>
+    <p>{{ data.orders }}</p>
+</template>
 
 <style lang="scss" scoped></style>
