@@ -61,9 +61,9 @@ setInterval(() => {
         </div>
     </div>
 
-    <!-- <router-link class="go-to-home" v-if="orderStore().orderTotalPrice > 0" to="/">
+    <router-link class="go-to-home" v-if="orderStore().orderTotalPrice > 0" to="/">
         برگشت به منو
-    </router-link> -->
+    </router-link>
 </template>
 
 <style lang="scss" scoped>
