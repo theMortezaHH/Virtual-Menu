@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue"
-import useDataStore from "@/store/store.js"
+import basketStore from "@/store/basket-store.js"
 import BasketItem from "@/components/basket-item.vue"
 
 const basketVisible = ref(false)
@@ -35,13 +35,13 @@ function ShowBasket() {
                     d="M160 192l96-128 96 128"
                 />
             </svg>
-            <p class="items-in-basket" v-if="useDataStore().basketItemsCount > 0">
-                {{ useDataStore().basketItemsCount }}
+            <p class="items-in-basket" v-if="basketStore().basketItemsCount > 0">
+                {{ basketStore().basketItemsCount }}
             </p>
-            <p class="items-total-price" v-if="useDataStore().basketTotalPrice > 0">
-                جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}
+            <p class="items-total-price" v-if="basketStore().basketTotalPrice > 0">
+                جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}
             </p>
-            <p class="items-total-price" v-if="useDataStore().basketTotalPrice === 0">
+            <p class="items-total-price" v-if="basketStore().basketTotalPrice === 0">
                 سبد خرید شما خالیست
             </p>
             <svg viewBox="0 0 512 512" class="chevron">
@@ -57,13 +57,13 @@ function ShowBasket() {
         </div>
         <div class="basket-item-container">
             <BasketItem
-                v-for="(item, index) in useDataStore().basketItems"
+                v-for="(item, index) in basketStore().basketItems"
                 :value="item"
                 :disabled="false"
                 :key="index"
             />
         </div>
-        <router-link class="go-to-card" v-if="useDataStore().basketItemsCount > 0" to="/cart">
+        <router-link class="go-to-card" v-if="basketStore().basketItemsCount > 0" to="/cart">
             ثبت سفارش
         </router-link>
     </div>

@@ -1,12 +1,23 @@
 <script setup>
-import useDataStore from "@/store/store.js"
+import basketStore from "@/store/basket-store.js"
+import orderStore from "@/store/order-store.js"
 import BasketItem from "@/components/basket-item.vue"
 
 function SetOrder() {
-    useDataStore().order = useDataStore().basketItems
+    const basketItems = JSON.stringify(basketStore().basketItems)
+    // if (orderStore().order.length !== undefined) {
+    //     orderStore().order[orderStore().order.length + 1] = JSON.parse(basketItems)
+    // } else {
+    //     orderStore().order[0] = JSON.parse(basketItems)
+    // }
+    orderStore().order = JSON.parse(basketItems)
+
+    console.log(orderStore().order)
+
+    basketStore().basketReset()
     const data = new FormData()
-    data.append("moz", useDataStore().order)
-    fetch("pageData", {
+    data.append("moz", basketStore().order)
+    fetch("./database/MenuData", {
         method: "POST",
         body: data,
     })
@@ -32,19 +43,19 @@ function SetOrder() {
 
         <div class="cart-items">
             <BasketItem
-                v-for="(item, index) in useDataStore().basketItems"
+                v-for="(item, index) in basketStore().basketItems"
                 :value="item"
                 :disabled="true"
                 :key="index"
             />
-            <p class="total-price">جمع کل: {{ $filters.price(useDataStore().basketTotalPrice) }}</p>
+            <p class="total-price">جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}</p>
         </div>
 
         <router-link
-            class="go-to-wait"
-            v-if="useDataStore().basketItemsCount > 0"
+            class="go-to-order"
+            v-if="basketStore().basketItemsCount > 0"
             @click="SetOrder()"
-            to="/wait"
+            to="/order"
         >
             تایید سفارش
         </router-link>
@@ -101,7 +112,7 @@ function SetOrder() {
             margin-top: 20px;
         }
     }
-    .go-to-wait {
+    .go-to-order {
         display: flex;
         position: relative;
         flex-direction: row;

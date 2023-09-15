@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router"
-import useDataStore from "@/store/store.js"
+import basketStore from "@/store/basket-store.js"
 
 const props = defineProps({
     value: Object,
@@ -9,7 +9,7 @@ const router = useRouter()
 
 function changeNumber(param) {
     if (props.value.count + param < 0) return
-    useDataStore().data.menuItems[props.value.id].count += param
+    basketStore().data.menuItems[props.value.id].count += param
 }
 
 function route() {

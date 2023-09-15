@@ -1,6 +1,19 @@
 <script setup>
-import useDataStore from "@/store/store.js"
+import { ref } from "vue"
+import orderStore from "@/store/order-store.js"
 import BasketItem from "@/components/basket-item.vue"
+
+const orderDuration = ref(0)
+for (let index = 0; index < orderStore().order.length; index++) {
+    if (orderStore().order[index].duration > orderDuration.value) {
+        orderDuration.value = orderStore().order[index].duration
+    }
+}
+setInterval(() => {
+    if (orderDuration.value > 0) {
+        orderDuration.value -= 1
+    }
+}, 60000)
 </script>
 
 <template>
@@ -23,27 +36,34 @@ import BasketItem from "@/components/basket-item.vue"
         </svg>
 
         <div class="header">
-            <p class="header-title"
-                >سفارش شما ثبت شد <br />
-                لطفا منتظر بمانید</p
-            >
+            <p class="header-title" v-if="orderDuration > 0">
+                سفارش شما ثبت شد <br />
+                لطفا منتظر بمانید
+            </p>
+            <p class="header-title" v-if="orderDuration === 0">
+                سفارش شما آماده است <br />
+                نوش جان!
+            </p>
         </div>
 
         <div class="cart-items">
             <BasketItem
-                v-for="(item, index) in useDataStore().order"
+                v-for="(item, index) in orderStore().order"
                 :value="item"
                 :disabled="true"
                 :key="index"
             />
-            <p class="total-price">جمع کل: {{ $filters.price(useDataStore().orderTotalPrice) }}</p>
-            <img class="loading" src="@/assets/loading.svg" />
+            <p class="total-price">جمع کل: {{ $filters.price(orderStore().orderTotalPrice) }}</p>
+            <p class="time-remaining" v-if="orderDuration > 0">
+                زمان تقریبی باقیمانده: {{ orderDuration }}
+            </p>
+            <img class="loading" src="@/assets/loading.svg" v-if="orderDuration > 0" />
         </div>
-
-        <router-link class="go-to-home" v-if="useDataStore().orderItemsCount > 0" to="/">
-            برگشت به منو
-        </router-link>
     </div>
+
+    <!-- <router-link class="go-to-home" v-if="orderStore().orderTotalPrice > 0" to="/">
+        برگشت به منو
+    </router-link> -->
 </template>
 
 <style lang="scss" scoped>

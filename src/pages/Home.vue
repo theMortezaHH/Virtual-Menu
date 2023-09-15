@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
-import useDataStore from "@/store/store.js"
+import basketStore from "@/store/basket-store.js"
 import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
 import Basket from "@/components/basket.vue"
@@ -9,32 +9,32 @@ import Sidebar from "@/components/sidebar.vue"
 
 const selectedIndex = ref(0)
 const selectedCategoryItems = computed(() => {
-    if (!useDataStore().data.categoryItems) {
+    if (!basketStore().data.categoryItems) {
         return
     }
-    const selectedId = useDataStore().data.categoryItems[selectedIndex.value].id
-    return useDataStore().data.menuItems.filter((x) => x.categoryId === selectedId)
+    const selectedId = basketStore().data.categoryItems[selectedIndex.value].id
+    return basketStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 280
 const router = useRouter()
 
-function route() {
-    router.push("/wait")
-}
+// function route() {
+//     router.push("/order")
+// }
 </script>
 
 <template>
     <div class="container">
         <div class="header">
-            <div class="orderInfo" v-if="!!useDataStore().order[0]" @click="route()">
+            <!-- <div class="orderInfo" v-if="orderStore().order" @click="route()">
                 <img class="loading" src="@/assets/loading.svg" />
                 <p class="orderTitle">سفارش:</p>
-            </div>
+            </div> -->
             <p class="headerTitle">منوی مجازی</p>
         </div>
         <div class="category">
             <MenuCategory
-                v-for="(item, index) in useDataStore().data.categoryItems"
+                v-for="(item, index) in basketStore().data.categoryItems"
                 :value="item"
                 :selected="selectedIndex === index"
                 :key="index"
