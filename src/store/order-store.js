@@ -14,12 +14,9 @@ const orderStore = defineStore("order", () => {
         return number
     })
 
-    const hasActiveOrder = computed(() => order.value.id !== undefined)
-
     return {
         order,
         orderTotalPrice,
-        hasActiveOrder
     }
 })
 

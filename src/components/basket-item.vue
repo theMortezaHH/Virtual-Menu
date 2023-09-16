@@ -3,11 +3,11 @@ import basketStore from "@/store/basket-store.js"
 
 const props = defineProps({
     value: Object,
-    disabled: Boolean,
+    editDisabled: Boolean,
 })
 
 function changeNumber(param) {
-    if (props.value.count + param < 0 || props.disabled === true) return
+    if (props.value.count + param < 0 || props.editDisabled === true) return
     basketStore().data.menuItems[props.value.id].count += param
 }
 </script>
@@ -20,7 +20,7 @@ function changeNumber(param) {
             <svg
                 viewBox="0 0 512 512"
                 class="remove"
-                v-if="(props.value.count > 1) & !props.disabled"
+                v-if="(props.value.count > 1) & !props.editDisabled"
                 @click="changeNumber(-1)"
             >
                 <title>Remove</title>
@@ -35,7 +35,7 @@ function changeNumber(param) {
             <svg
                 viewBox="0 0 512 512"
                 class="remove"
-                v-if="(props.value.count === 1) & !props.disabled"
+                v-if="(props.value.count === 1) & !props.editDisabled"
                 @click="changeNumber(-1)"
             >
                 <path
@@ -60,12 +60,12 @@ function changeNumber(param) {
                 />
             </svg>
 
-            <p class="number">{{ props.value.count }}</p>
+            <p class="number">{{ props.value.count }} <span v-if="props.editDisabled">عدد</span></p>
 
             <svg
                 viewBox="0 0 512 512"
                 class="add"
-                v-if="!props.disabled"
+                v-if="!props.editDisabled"
                 @click="changeNumber(1)"
                 alt="add"
             >
@@ -139,14 +139,18 @@ function changeNumber(param) {
         .number {
             position: relative;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
             height: 25px;
             width: 40px;
             margin: 0 5px 0 5px;
+            direction: rtl;
             font-size: 25px;
             text-align: center;
+            span {
+                font-size: 16px;
+            }
         }
     }
 }

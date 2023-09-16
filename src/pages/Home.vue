@@ -6,10 +6,7 @@ import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
 import Basket from "@/components/basket.vue"
 import Sidebar from "@/components/sidebar.vue"
-import useOrderStore from "@/store/order-store.js"
 
-
-const orderStore = useOrderStore()
 const selectedIndex = ref(0)
 const selectedCategoryItems = computed(() => {
     if (!basketStore().data.categoryItems) {
@@ -21,19 +18,18 @@ const selectedCategoryItems = computed(() => {
 const calculatedHeight = window.innerHeight - 280
 const router = useRouter()
 
-function route() {
-    router.push("/order")
-}
+// function route() {
+//     router.push("/order")
+// }
 </script>
 
 <template>
     <div class="container">
         <div class="header">
-            <div class="orderInfo" v-if="orderStore.hasActiveOrder" @click="route()">
-
+            <!-- <div class="orderInfo" v-if="useOrderStore().hasActiveOrder" @click="route()">
                 <img class="loading" src="@/assets/loading.svg" />
                 <p class="orderTitle">سفارش:</p>
-            </div>
+            </div> -->
             <p class="headerTitle">منوی مجازی</p>
         </div>
         <div class="category">
@@ -88,10 +84,6 @@ function route() {
         .headerTitle {
             margin: auto 80px auto auto;
             font-size: 25px;
-        }
-        .menu-icon {
-            width: 30px;
-            margin: auto 20px auto 0;
         }
     }
     .category {

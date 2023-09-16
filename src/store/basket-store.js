@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
+import orderStore from "@/store/order-store.js"
 
 const basketStore = defineStore("basket", () => {
     const data = ref({})
@@ -45,12 +46,19 @@ const basketStore = defineStore("basket", () => {
         return number
     })
 
+    const customerOrder = computed(() => {
+        if (!data.value.order) return 0
+
+        return data.value.order
+    })
+
     return {
         data,
         basketItems,
         basketReset,
         basketItemsCount,
         basketTotalPrice,
+        customerOrder,
     }
 })
 
