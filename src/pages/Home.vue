@@ -11,8 +11,9 @@ const basketStore = useBasketStore()
 const selectedIndex = ref(0)
 const { data } = storeToRefs(basketStore)
 
-onMounted(async () => {
+onMounted(async() => {
     await basketStore.getData()
+    // console.log(data.value, '🍦')
 })
 
 const selectedCategoryItems = computed(() => {
@@ -24,7 +25,7 @@ const selectedCategoryItems = computed(() => {
 })
 const calculatedHeight = window.innerHeight - 280
 </script>
-
+Suspense
 <template>
     <div class="container">
         <div class="header">
