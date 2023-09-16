@@ -50,7 +50,7 @@ setInterval(() => {
             <BasketItem
                 v-for="(item, index) in orderStore().order"
                 :value="item"
-                :disabled="true"
+                :editDisabled="true"
                 :key="index"
             />
             <p class="total-price">جمع کل: {{ $filters.price(orderStore().orderTotalPrice) }}</p>

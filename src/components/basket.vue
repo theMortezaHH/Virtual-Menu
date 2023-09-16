@@ -59,7 +59,7 @@ function ShowBasket() {
             <BasketItem
                 v-for="(item, index) in basketStore().basketItems"
                 :value="item"
-                :disabled="false"
+                :editDisabled="false"
                 :key="index"
             />
         </div>

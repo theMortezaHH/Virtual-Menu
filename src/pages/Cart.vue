@@ -45,7 +45,7 @@ function SetOrder() {
             <BasketItem
                 v-for="(item, index) in basketStore().basketItems"
                 :value="item"
-                :disabled="true"
+                :editDisabled="true"
                 :key="index"
             />
             <p class="total-price">جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}</p>
