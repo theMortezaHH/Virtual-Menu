@@ -1,30 +1,22 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
-import { useRouter } from "vue-router"
 import orderStore from "@/store/order-store.js"
-
-const router = useRouter()
-
-function route() {
-    router.push("/order")
-}
+import { useRouter } from "vue-router"
 
 const basketStore = defineStore("basket", () => {
     const data = ref({})
-
-    async function GetData() {
+    const router = useRouter()
+    async function getData() {
         const response = await fetch("./database/MenuData")
         data.value = await response.json()
         for (let index = 0; index < data.value.menuItems.length; index++) {
             data.value.menuItems[index].count = 0
         }
-
-        if (data.value.order) {
+        if (data.value.order && data.value.order.length) {
             orderStore().order = data.value.order
-            route()
+            router.push("/order")
         }
     }
-    GetData()
 
     const basketItems = computed(() => {
         if (!data.value.menuItems) return
@@ -65,6 +57,7 @@ const basketStore = defineStore("basket", () => {
     })
 
     return {
+        getData,
         data,
         basketItems,
         basketReset,

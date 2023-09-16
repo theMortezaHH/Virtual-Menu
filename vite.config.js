@@ -4,6 +4,7 @@ import { URL, fileURLToPath } from "node:url"
 // https://vitejs.dev/config/
 export default defineConfig({
     server: {
+        // https: true,
         port: 5000,
         host: true,
         htm: {

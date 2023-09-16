@@ -1,4 +1,4 @@
-import { createApp } from "vue"
+import { createApp, markRaw } from "vue"
 import { createPinia } from "pinia"
 import { createRouter, createWebHistory } from "vue-router"
 import orderStore from "@/store/order-store.js"
@@ -13,6 +13,7 @@ import Barista from "@/pages/Barista.vue"
 import NotFound from "@/pages/NotFound.vue"
 
 const pinia = createPinia()
+
 const app = createApp(App)
 const routes = [
     { path: "/", component: Home },
@@ -26,6 +27,10 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+})
+
+pinia.use(({ store }) => {
+    store.router = markRaw(router)
 })
 
 router.beforeEach((to, from, next) => {

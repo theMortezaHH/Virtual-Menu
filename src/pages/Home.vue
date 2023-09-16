@@ -1,26 +1,28 @@
 <script setup>
-import { ref, computed } from "vue"
-import { useRouter } from "vue-router"
-import basketStore from "@/store/basket-store.js"
+import { ref, computed, onMounted } from "vue"
+import useBasketStore from "@/store/basket-store.js"
 import MenuCategory from "@/components/menu-category.vue"
 import Product from "@/components/product.vue"
 import Basket from "@/components/basket.vue"
 import Sidebar from "@/components/sidebar.vue"
+import { storeToRefs } from "pinia"
 
+const basketStore = useBasketStore()
 const selectedIndex = ref(0)
+const { data } = storeToRefs(basketStore)
+
+onMounted(async () => {
+    await basketStore.getData()
+})
+
 const selectedCategoryItems = computed(() => {
-    if (!basketStore().data.categoryItems) {
+    if (!data.value.categoryItems) {
         return
     }
-    const selectedId = basketStore().data.categoryItems[selectedIndex.value].id
-    return basketStore().data.menuItems.filter((x) => x.categoryId === selectedId)
+    const selectedId = data.value.categoryItems[selectedIndex.value].id
+    return data.value.menuItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 280
-const router = useRouter()
-
-// function route() {
-//     router.push("/order")
-// }
 </script>
 
 <template>
@@ -34,7 +36,7 @@ const router = useRouter()
         </div>
         <div class="category">
             <MenuCategory
-                v-for="(item, index) in basketStore().data.categoryItems"
+                v-for="(item, index) in data.categoryItems"
                 :value="item"
                 :selected="selectedIndex === index"
                 :key="index"
