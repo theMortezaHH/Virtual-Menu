@@ -16,8 +16,8 @@ const selectedCategoryItems = computed(() => {
     return basketStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 280
-const router = useRouter()
 
+// const router = useRouter()
 // function route() {
 //     router.push("/order")
 // }

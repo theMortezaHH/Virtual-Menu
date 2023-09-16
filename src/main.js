@@ -28,7 +28,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path !== "/order") {
+    if (from.path === "/order") {
         if (orderStore().order.length !== undefined) {
             next(false)
         }

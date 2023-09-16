@@ -14,9 +14,21 @@ const orderStore = defineStore("order", () => {
         return number
     })
 
+    const orderDuration = ref(0)
+
+    function setOrderDuration() {
+        for (let index = 0; index < order.value.length; index++) {
+            if (order.value[index].duration > orderDuration.value) {
+                orderDuration.value = order.value[index].duration
+            }
+        }
+    }
+
     return {
         order,
         orderTotalPrice,
+        orderDuration,
+        setOrderDuration,
     }
 })
 

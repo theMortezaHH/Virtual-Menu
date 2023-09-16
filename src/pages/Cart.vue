@@ -3,7 +3,7 @@ import basketStore from "@/store/basket-store.js"
 import orderStore from "@/store/order-store.js"
 import BasketItem from "@/components/basket-item.vue"
 
-function SetOrder() {
+function setOrder() {
     const basketItems = JSON.stringify(basketStore().basketItems)
     // if (orderStore().order.length !== undefined) {
     //     orderStore().order[orderStore().order.length + 1] = JSON.parse(basketItems)
@@ -11,6 +11,7 @@ function SetOrder() {
     //     orderStore().order[0] = JSON.parse(basketItems)
     // }
     orderStore().order = JSON.parse(basketItems)
+    orderStore().setOrderDuration()
 
     console.log(orderStore().order)
 
@@ -54,7 +55,7 @@ function SetOrder() {
         <router-link
             class="go-to-order"
             v-if="basketStore().basketItemsCount > 0"
-            @click="SetOrder()"
+            @click="setOrder()"
             to="/order"
         >
             تایید سفارش
