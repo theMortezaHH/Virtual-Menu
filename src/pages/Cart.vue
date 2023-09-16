@@ -12,12 +12,10 @@ function SetOrder() {
     // }
     orderStore().order = JSON.parse(basketItems)
 
-    console.log(orderStore().order)
-
     basketStore().basketReset()
     const data = new FormData()
-    data.append("moz", basketStore().order)
-    fetch("./database/MenuData", {
+    data.append("data", orderStore().order)
+    fetch("./orderData", {
         method: "POST",
         body: data,
     })
@@ -48,7 +46,9 @@ function SetOrder() {
                 :editDisabled="true"
                 :key="index"
             />
-            <p class="total-price">جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}</p>
+            <p class="total-price">
+                جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}
+            </p>
         </div>
 
         <router-link

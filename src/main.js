@@ -2,6 +2,7 @@ import { createApp } from "vue"
 import { createPinia } from "pinia"
 import { createRouter, createWebHistory } from "vue-router"
 import orderStore from "@/store/order-store.js"
+import basketStore from "@/store/basket-store.js"
 import "./style.css"
 import App from "./App.vue"
 import Home from "@/pages/Home.vue"
@@ -28,7 +29,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path !== "/order") {
+    if (from.path === "/order") {
         if (orderStore().order.length !== undefined) {
             next(false)
         }
