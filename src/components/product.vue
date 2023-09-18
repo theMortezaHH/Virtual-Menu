@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router"
-import basketStore from "@/store/basket-store.js"
+import customerStore from "@/store/customer-store.js"
 
 const props = defineProps({
     value: Object,
@@ -9,7 +9,7 @@ const props = defineProps({
 
 function changeNumber(param) {
     if (props.value.count + param < 0) return
-    basketStore().data.menuItems[props.value.id].count += param
+    customerStore().data.menuItems[props.value.id].count += param
 }
 function route() {
     // router.push("/info/" + props.value.id)
@@ -23,7 +23,9 @@ function route() {
         <div class="item-info">
             <p class="item-name">{{ props.value.title }}</p>
             <div>
-                <p class="item-price">{{ $filters.price(props.value.price) }}</p>
+                <p class="item-price">
+                    {{ $filters.price(props.value.price) }}
+                </p>
                 <p class="item-time">{{ props.value.duration }} دقیقه</p>
             </div>
             <div class="add-to-card">
@@ -77,7 +79,9 @@ function route() {
                     افزودن به سبد خرید
                 </p>
 
-                <p class="number" v-if="props.value.count > 0">{{ props.value.count }}</p>
+                <p class="number" v-if="props.value.count > 0">
+                    {{ props.value.count }}
+                </p>
 
                 <svg
                     viewBox="0 0 512 512"

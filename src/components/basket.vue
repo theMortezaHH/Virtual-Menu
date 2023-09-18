@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue"
-import basketStore from "@/store/basket-store.js"
+import customerStore from "@/store/customer-store.js"
 import BasketItem from "@/components/basket-item.vue"
 
 const basketVisible = ref(false)
@@ -17,7 +17,7 @@ function ShowBasket() {
 </script>
 
 <template>
-    <div class="prevent-click" @click="ShowBasket" v-if="basketVisible"> </div>
+    <div class="prevent-click" @click="ShowBasket" v-if="basketVisible"></div>
     <div class="basket">
         <div class="basket-header" @click="ShowBasket">
             <svg viewBox="0 0 512 512" class="basket-icon">
@@ -35,13 +35,22 @@ function ShowBasket() {
                     d="M160 192l96-128 96 128"
                 />
             </svg>
-            <p class="items-in-basket" v-if="basketStore().basketItemsCount > 0">
-                {{ basketStore().basketItemsCount }}
+            <p
+                class="items-in-basket"
+                v-if="customerStore().basketItemsCount > 0"
+            >
+                {{ customerStore().basketItemsCount }}
             </p>
-            <p class="items-total-price" v-if="basketStore().basketTotalPrice > 0">
-                جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}
+            <p
+                class="items-total-price"
+                v-if="customerStore().basketTotalPrice > 0"
+            >
+                جمع کل: {{ $filters.price(customerStore().basketTotalPrice) }}
             </p>
-            <p class="items-total-price" v-if="basketStore().basketTotalPrice === 0">
+            <p
+                class="items-total-price"
+                v-if="customerStore().basketTotalPrice === 0"
+            >
                 سبد خرید شما خالیست
             </p>
             <svg viewBox="0 0 512 512" class="chevron">
@@ -57,13 +66,17 @@ function ShowBasket() {
         </div>
         <div class="basket-item-container">
             <BasketItem
-                v-for="(item, index) in basketStore().basketItems"
+                v-for="(item, index) in customerStore().basketItems"
                 :value="item"
                 :editDisabled="false"
                 :key="index"
             />
         </div>
-        <router-link class="go-to-card" v-if="basketStore().basketItemsCount > 0" to="/cart">
+        <router-link
+            class="go-to-card"
+            v-if="customerStore().basketItemsCount > 0"
+            to="/cart"
+        >
             ثبت سفارش
         </router-link>
     </div>

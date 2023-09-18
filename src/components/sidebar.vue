@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue"
+import colorThemeStore from "@/store/color-theme-store.js"
 
 const sidebarVisible = ref(false)
-const colorTheme = ref(true)
 
 function ShowSidebar() {
     if (!sidebarVisible.value) {
@@ -13,27 +13,6 @@ function ShowSidebar() {
         sidebarVisible.value = false
     }
 }
-
-function ChangeColorTheme() {
-    if (!colorTheme.value) {
-        document.querySelector("body").classList.remove("dark-theme")
-        localStorage.setItem("colorTheme", true)
-        colorTheme.value = true
-    } else {
-        document.querySelector("body").classList.add("dark-theme")
-        localStorage.setItem("colorTheme", false)
-        colorTheme.value = false
-    }
-}
-onMounted(() => {
-    if (localStorage.getItem("colorTheme") === null) {
-        return
-    }
-    if (localStorage.getItem("colorTheme") === "true") {
-        colorTheme.value = false
-    }
-    ChangeColorTheme()
-})
 </script>
 
 <template>
@@ -47,9 +26,13 @@ onMounted(() => {
             d="M88 152h336M88 256h336M88 360h336"
         />
     </svg>
-    <div class="prevent-click" @click="ShowSidebar" v-if="sidebarVisible"> </div>
+    <div class="prevent-click" @click="ShowSidebar" v-if="sidebarVisible"></div>
     <div class="sidebar">
-        <div class="mode-selector" :class="{ selected: colorTheme }" @click="ChangeColorTheme()">
+        <div
+            class="mode-selector"
+            :class="{ selected: colorThemeStore().colorTheme }"
+            @click="colorThemeStore().changeColorTheme()"
+        >
             <p class="switch"></p>
         </div>
     </div>

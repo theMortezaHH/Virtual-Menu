@@ -1,5 +1,5 @@
 <script setup>
-import basketStore from "@/store/basket-store.js"
+import customerStore from "@/store/customer-store.js"
 
 const props = defineProps({
     value: Object,
@@ -8,7 +8,7 @@ const props = defineProps({
 
 function changeNumber(param) {
     if (props.value.count + param < 0 || props.editDisabled === true) return
-    basketStore().data.menuItems[props.value.id].count += param
+    customerStore().data.menuItems[props.value.id].count += param
 }
 </script>
 
@@ -60,7 +60,10 @@ function changeNumber(param) {
                 />
             </svg>
 
-            <p class="number">{{ props.value.count }} <span v-if="props.editDisabled">عدد</span></p>
+            <p class="number">
+                {{ props.value.count }}
+                <span v-if="props.editDisabled">عدد</span>
+            </p>
 
             <svg
                 viewBox="0 0 512 512"
