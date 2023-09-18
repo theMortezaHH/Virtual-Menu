@@ -47,15 +47,6 @@
                 "duration": 20,
                 "price": 87000,
                 "count": 1
-            },
-            {
-                "id": 5,
-                "categoryId": 2,
-                "image": "/assets/tea.jpg",
-                "title": "چای ماسالا",
-                "duration": 5,
-                "price": 40000,
-                "count": 3
             }
         ]
     ]

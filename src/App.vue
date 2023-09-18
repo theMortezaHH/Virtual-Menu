@@ -7,7 +7,7 @@ import orderStore from "@/store/order-store.js"
 const router = useRouter()
 onMounted(async () => {
     await basketStore().getData()
-    if (basketStore().data.order[0]) {
+    if (basketStore().data.order) {
         orderStore().order = basketStore().data.order
         orderStore().setOrderDuration()
         router.push("/order")

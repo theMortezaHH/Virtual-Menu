@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue"
 import Sidebar from "@/components/sidebar.vue"
+import OrderCard from "@/components/order-card.vue"
 
 const data = ref({})
 
@@ -20,26 +21,7 @@ onMounted(() => {
             <p class="headerTitle">لیست سفارشات</p>
         </div>
 
-        <div class="orders">
-            <svg class="close-icon" viewBox="0 0 512 512">
-                <title>Close Circle</title>
-                <path
-                    d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-miterlimit="10"
-                    stroke-width="32"
-                />
-                <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                    d="M320 320L192 192M192 320l128-128"
-                />
-            </svg>
-        </div>
+        <OrderCard v-for="(item, index) in data.orders" :value="item" :key="index" />
     </div>
 
     <Sidebar />
@@ -67,18 +49,6 @@ onMounted(() => {
         .headerTitle {
             margin: auto 80px auto auto;
             font-size: 25px;
-        }
-    }
-    .orders {
-        width: 350px;
-        background: var(--box);
-        border: 1px solid var(--border);
-        border-radius: 15px;
-        box-shadow: 0 2px 5px 2px var(--shadow);
-        .close-icon {
-            display: flex;
-            width: 30px;
-            margin: 8px 8px 0 auto;
         }
     }
 }
