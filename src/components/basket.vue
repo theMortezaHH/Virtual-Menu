@@ -164,6 +164,7 @@ function ShowBasket() {
         width: 240px;
         background: var(--box);
         box-shadow: 0 2px 5px 2px var(--shadow);
+        border: 1px solid var(--border);
         border-radius: 10px;
         text-decoration: none;
     }

@@ -12,15 +12,13 @@ function setOrder() {
     // }
     orderStore().order = JSON.parse(basketItems)
     orderStore().setOrderDuration()
-
-    console.log(orderStore().order)
-
     basketStore().basketReset()
-    const data = new FormData()
-    data.append("moz", basketStore().order)
+
     fetch("./database/MenuData", {
         method: "POST",
-        body: data,
+        body: {
+            data: orderStore().order,
+        },
     })
 }
 </script>
@@ -124,6 +122,7 @@ function setOrder() {
         width: 240px;
         background: var(--box);
         box-shadow: 0 2px 5px 2px var(--shadow);
+        border: 1px solid var(--border);
         border-radius: 10px;
         text-decoration: none;
     }
