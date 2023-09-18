@@ -6,7 +6,7 @@ import OrderCard from "@/components/order-card.vue"
 const data = ref({})
 
 async function getData() {
-    const response = await fetch("../database/orders")
+    const response = await fetch("/database/baristaData")
     data.value = await response.json()
 }
 

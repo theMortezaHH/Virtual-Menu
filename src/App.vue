@@ -8,10 +8,12 @@ import colorThemeStore from "@/store/color-theme-store.js"
 const router = useRouter()
 onMounted(async () => {
     await customerStore().getData()
-    if (customerStore().data.order) {
+    if (customerStore().data.order && !window.location.href.includes("/admin")) {
         orderStore().order = customerStore().data.order
         orderStore().setOrderDuration()
         router.push("/order")
+    } else if (!customerStore().data.order) {
+        router.push("/")
     }
     if (localStorage.getItem("colorTheme") === "false") {
         colorThemeStore().colorTheme = true
