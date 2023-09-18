@@ -1,10 +1,10 @@
 <script setup>
-import basketStore from "@/store/basket-store.js"
+import customerStore from "@/store/customer-store.js"
 import orderStore from "@/store/order-store.js"
 import BasketItem from "@/components/basket-item.vue"
 
 function setOrder() {
-    const basketItems = JSON.stringify(basketStore().basketItems)
+    const basketItems = JSON.stringify(customerStore().basketItems)
     // if (orderStore().order.length !== undefined) {
     //     orderStore().order[orderStore().order.length + 1] = JSON.parse(basketItems)
     // } else {
@@ -12,7 +12,7 @@ function setOrder() {
     // }
     orderStore().order = JSON.parse(basketItems)
     orderStore().setOrderDuration()
-    basketStore().basketReset()
+    customerStore().basketReset()
 
     fetch("./database/MenuData", {
         method: "POST",
@@ -42,17 +42,19 @@ function setOrder() {
 
         <div class="cart-items">
             <BasketItem
-                v-for="(item, index) in basketStore().basketItems"
+                v-for="(item, index) in customerStore().basketItems"
                 :value="item"
                 :editDisabled="true"
                 :key="index"
             />
-            <p class="total-price">جمع کل: {{ $filters.price(basketStore().basketTotalPrice) }}</p>
+            <p class="total-price">
+                جمع کل: {{ $filters.price(customerStore().basketTotalPrice) }}
+            </p>
         </div>
 
         <router-link
             class="go-to-order"
-            v-if="basketStore().basketItemsCount > 0"
+            v-if="customerStore().basketItemsCount > 0"
             @click="setOrder()"
             to="/order"
         >

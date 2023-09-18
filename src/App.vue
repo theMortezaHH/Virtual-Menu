@@ -1,17 +1,22 @@
 <script setup>
 import { onMounted } from "vue"
 import { useRouter } from "vue-router"
-import basketStore from "@/store/basket-store.js"
+import customerStore from "@/store/customer-store.js"
 import orderStore from "@/store/order-store.js"
+import colorThemeStore from "@/store/color-theme-store.js"
 
 const router = useRouter()
 onMounted(async () => {
-    await basketStore().getData()
-    if (basketStore().data.order) {
-        orderStore().order = basketStore().data.order
+    await customerStore().getData()
+    if (customerStore().data.order) {
+        orderStore().order = customerStore().data.order
         orderStore().setOrderDuration()
         router.push("/order")
     }
+    if (localStorage.getItem("colorTheme") === "false") {
+        colorThemeStore().colorTheme = true
+    }
+    colorThemeStore().changeColorTheme()
 })
 </script>
 <template>

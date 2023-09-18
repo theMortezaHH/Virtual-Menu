@@ -1,10 +1,10 @@
 <script setup>
-import basketStore from "@/store/basket-store.js"
+import customerStore from "@/store/customer-store.js"
 import { useRoute } from "vue-router"
 </script>
 
 <template>
-    <img :src="basketStore().data.menuItems[useRoute().params.id].image" />
+    <img :src="customerStore().data.menuItems[useRoute().params.id].image" />
     <p>You are in /info/{{ useRoute().params.id }}</p>
 </template>
 

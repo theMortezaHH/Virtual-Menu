@@ -1,12 +1,11 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
-import orderStore from "@/store/order-store.js"
 
-const basketStore = defineStore("basket", () => {
+const customerStore = defineStore("basket", () => {
     const data = ref({})
 
     async function getData() {
-        const response = await fetch("./database/pageData")
+        const response = await fetch("/database/pageData")
         data.value = await response.json()
         for (let index = 0; index < data.value.menuItems.length; index++) {
             data.value.menuItems[index].count = 0
@@ -62,4 +61,4 @@ const basketStore = defineStore("basket", () => {
     }
 })
 
-export default basketStore
+export default customerStore
