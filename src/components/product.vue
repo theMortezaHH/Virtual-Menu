@@ -28,7 +28,7 @@ function route() {
                 </p>
                 <p class="item-time">{{ props.value.duration }} دقیقه</p>
             </div>
-            <div class="add-to-card">
+            <div class="add-to-cart">
                 <svg
                     viewBox="0 0 512 512"
                     class="remove"
@@ -174,7 +174,7 @@ function route() {
                 direction: rtl;
             }
         }
-        .add-to-card {
+        .add-to-cart {
             display: flex;
             position: relative;
             flex-direction: row;
