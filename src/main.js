@@ -1,6 +1,8 @@
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import { createRouter, createWebHistory } from "vue-router"
+import { plugin, defaultConfig } from "@formkit/vue"
+import "@formkit/themes/genesis"
 import orderStore from "@/store/order-store.js"
 import "./style.css"
 import App from "./App.vue"
@@ -45,5 +47,6 @@ app.config.globalProperties.$filters = {
 }
 
 app.use(router)
+app.use(plugin, defaultConfig)
 app.use(pinia)
 app.mount("#app")

@@ -79,14 +79,14 @@ function ShowSidebar() {
         justify-content: center;
         align-items: center;
         margin: 20px 0 0 0;
-        height: 25px;
+        height: 26px;
         width: 45px;
         background: var(--box);
         border: 1px solid var(--border);
         box-shadow: inset 1px 2px 5px 2px var(--shadow);
         border-radius: 15px;
         .switch {
-            margin: auto 2px auto auto;
+            margin: 2px 2px auto auto;
             height: 20px;
             width: 20px;
             background: var(--background);

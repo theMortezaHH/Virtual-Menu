@@ -1,11 +1,15 @@
 <script setup>
 import { useRouter } from "vue-router"
 import customerStore from "@/store/customer-store.js"
+import { onMounted, ref } from "vue"
 
 const props = defineProps({
     value: Object,
+    position: Number,
 })
 // const router = useRouter()
+const translateX = ref("translateX(-20px)")
+const opacity = ref(0)
 
 function changeNumber(param) {
     if (props.value.count + param < 0) return
@@ -15,6 +19,13 @@ function route() {
     // router.push("/info/" + props.value.id)
     return
 }
+
+onMounted(() => {
+    setTimeout(() => {
+        translateX.value = "translateX(0px)"
+        opacity.value = 1
+    }, props.position * 100)
+})
 </script>
 
 <template>
@@ -117,6 +128,9 @@ function route() {
     border: 1px solid var(--border);
     border-radius: 15px;
     box-shadow: 0 2px 5px 2px var(--shadow);
+    transition-duration: 0.5s;
+    transform: v-bind(translateX);
+    opacity: v-bind(opacity);
     .item-img {
         height: 122px;
         width: 122px;
