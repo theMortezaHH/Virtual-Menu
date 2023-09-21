@@ -34,6 +34,8 @@ body.light-theme {
     --shadow: #00000055;
     --text: #000000;
     --icon: #000000;
+    --secondary-box: #00bb6d;
+    --secondary-text: #ffffff;
 }
 body.dark-theme {
     --background: #1a120b;
@@ -42,6 +44,8 @@ body.dark-theme {
     --shadow: #e5e5cb00;
     --text: #d5cea3;
     --icon: #d5cea3;
+    --secondary-box: #bb6600;
+    --secondary-text: #ffffff;
 }
 
 body {
