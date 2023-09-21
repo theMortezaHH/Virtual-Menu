@@ -3,13 +3,10 @@ import customerStore from "@/store/customer-store.js"
 import orderStore from "@/store/order-store.js"
 import BasketItem from "@/components/basket-item.vue"
 
+const deskCount = [1, 2, 3, 4, 5, 6]
+
 function setOrder() {
     const basketItems = JSON.stringify(customerStore().basketItems)
-    // if (orderStore().order.length !== undefined) {
-    //     orderStore().order[orderStore().order.length + 1] = JSON.parse(basketItems)
-    // } else {
-    //     orderStore().order[0] = JSON.parse(basketItems)
-    // }
     orderStore().order = JSON.parse(basketItems)
     orderStore().setOrderDuration()
     customerStore().basketReset()
@@ -78,10 +75,14 @@ function setOrder() {
         height: fit-content;
         width: 100%;
         .back-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 30px;
             width: 30px;
-            margin: auto auto auto 10px;
+            margin: auto auto auto 15px;
             background: var(--box);
+            border: 1px solid var(--border);
             border-radius: 10px;
             box-shadow: 0 2px 5px 2px var(--shadow);
             .back-button {
@@ -110,7 +111,7 @@ function setOrder() {
         .total-price {
             font-size: 20px;
             font-weight: bold;
-            margin-top: 20px;
+            margin: 20px 0 20px 0;
         }
     }
     .go-to-order {

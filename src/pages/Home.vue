@@ -16,20 +16,11 @@ const selectedCategoryItems = computed(() => {
     return customerStore().data.menuItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 280
-
-// const router = useRouter()
-// function route() {
-//     router.push("/order")
-// }
 </script>
 
 <template>
     <div class="container">
         <div class="header">
-            <!-- <div class="orderInfo" v-if="useOrderStore().hasActiveOrder" @click="route()">
-                <img class="loading" src="@/assets/loading.svg" />
-                <p class="orderTitle">سفارش:</p>
-            </div> -->
             <p class="headerTitle">منوی مجازی</p>
         </div>
         <div class="category">
@@ -44,9 +35,9 @@ const calculatedHeight = window.innerHeight - 280
 
         <div class="product-container" :style="{ height: calculatedHeight + 'px' }">
             <Product
-                v-for="item in selectedCategoryItems"
+                v-for="(item, index) in selectedCategoryItems"
                 :value="item"
-                :disabled="false"
+                :position="index"
                 :key="item.id"
             />
         </div>
