@@ -21,7 +21,7 @@ onMounted(() => {
             <p class="headerTitle">لیست سفارشات</p>
         </div>
 
-        <OrderCard v-for="(item, index) in data.orders" :value="item" :key="index" />
+        <OrderCard v-for="(item, index) in data.ordersList" :value="item" :key="index" />
     </div>
 
     <Sidebar />

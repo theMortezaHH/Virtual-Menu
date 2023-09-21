@@ -6,10 +6,16 @@ const props = defineProps({
 
 <template>
     <div class="cart">
-        <div class="order-container"> </div>
+        <div class="order-container">
+            <p class="order-title">:سفارشات</p>
+            <p v-for="item in props.value.order" class="order-item">
+                <span class="order-count"> x{{ item.count }} </span>
+                {{ item.title }}
+            </p>
+        </div>
         <div class="order-status">
             <p class="desk-title">شماره میز</p>
-            <p class="desk-number">3</p>
+            <p class="desk-number">{{ props.value.desk }}</p>
         </div>
     </div>
 </template>
@@ -21,9 +27,46 @@ const props = defineProps({
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 10px 20px;
+    height: fit-content;
+    width: 350px;
     background: var(--box);
     border: 1px solid var(--border);
     border-radius: 15px;
+    .order-container {
+        margin: 0 0 0 auto;
+        .order-title {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            margin: auto 10px auto auto;
+            height: 40px;
+            width: 220px;
+            font-weight: bold;
+        }
+        .order-count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 3px;
+            margin-left: 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            height: 25px;
+            width: 30px;
+        }
+        .order-item {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: end;
+            align-items: center;
+            margin: auto 10px auto auto;
+            height: 40px;
+            width: 220px;
+            border-top: 1px solid var(--border);
+        }
+    }
     .order-status {
         position: relative;
         display: flex;
@@ -31,8 +74,12 @@ const props = defineProps({
         justify-content: center;
         align-items: center;
         height: 100%;
-        width: 100px;
-        background: #00bb6d;
+        width: 80px;
+        background: var(--secondary-box);
+        border-radius: 0 14px 14px 0;
+        .desk-title {
+            color: var(--secondary-text);
+        }
         .desk-number {
             display: flex;
             justify-content: center;
