@@ -7,20 +7,20 @@ const customerStore = defineStore("basket", () => {
     async function getData() {
         const response = await fetch("http://localhost:5058/MenuData")
         data.value = await response.json()
-        for (let index = 0; index < data.value.productItmes.length; index++) {
-            data.value.productItmes[index].count = 0
+        for (let index = 0; index < data.value.productItems.length; index++) {
+            data.value.productItems[index].count = 0
         }
     }
 
     const basketItems = computed(() => {
-        if (!data.value.productItmes) return
+        if (!data.value.productItems) return
 
-        return data.value.productItmes.filter((x) => x.count > 0)
+        return data.value.productItems.filter((x) => x.count > 0)
     })
 
     function basketReset() {
-        for (let index = 0; index < data.value.productItmes.length; index++) {
-            data.value.productItmes[index].count = 0
+        for (let index = 0; index < data.value.productItems.length; index++) {
+            data.value.productItems[index].count = 0
         }
     }
 

@@ -14,7 +14,7 @@ const selectedCategoryItems = computed(() => {
     }
     const selectedId =
         customerStore().data.categoryItems[selectedIndex.value].id
-    return customerStore().data.productItmes.filter(
+    return customerStore().data.productItems.filter(
         (x) => x.categoryId === selectedId
     )
 })
