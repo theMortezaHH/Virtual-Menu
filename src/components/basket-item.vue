@@ -8,7 +8,7 @@ const props = defineProps({
 
 function changeNumber(param) {
     if (props.value.count + param < 0 || props.editDisabled === true) return
-    customerStore().data.productItmes[props.value.id].count += param
+    customerStore().data.productItems[props.value.id].count += param
 }
 </script>
 
