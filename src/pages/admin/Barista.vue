@@ -6,7 +6,7 @@ import OrderCard from "@/components/order-card.vue"
 const data = ref({})
 
 async function getData() {
-    const response = await fetch("/database/baristaData")
+    const response = await fetch("http://localhost:5058/Order")
     data.value = await response.json()
 }
 
@@ -21,7 +21,7 @@ onMounted(() => {
             <p class="headerTitle">لیست سفارشات</p>
         </div>
 
-        <OrderCard v-for="(item, index) in data.ordersList" :value="item" :key="index" />
+        <OrderCard v-for="(item, index) in data" :value="item" :key="index" />
     </div>
 
     <Sidebar />
