@@ -4,7 +4,7 @@ import { useRoute } from "vue-router"
 </script>
 
 <template>
-    <img :src="customerStore().data.menuItems[useRoute().params.id].image" />
+    <img :src="customerStore().data.productItmes[useRoute().params.id].image" />
     <p>You are in /info/{{ useRoute().params.id }}</p>
 </template>
 

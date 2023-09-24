@@ -13,7 +13,7 @@ const opacity = ref(0)
 
 function changeNumber(param) {
     if (props.value.count + param < 0) return
-    customerStore().data.menuItems[props.value.id].count += param
+    customerStore().data.productItmes[props.value.id].count += param
 }
 function route() {
     // router.push("/info/" + props.value.id)

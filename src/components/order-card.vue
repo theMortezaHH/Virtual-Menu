@@ -8,14 +8,14 @@ const props = defineProps({
     <div class="cart">
         <div class="order-container">
             <p class="order-title">:سفارشات</p>
-            <p v-for="item in props.value.order" class="order-item">
+            <p v-for="item in props.value.items" class="order-item">
                 <span class="order-count"> x{{ item.count }} </span>
                 {{ item.title }}
             </p>
         </div>
         <div class="order-status">
             <p class="desk-title">شماره میز</p>
-            <p class="desk-number">{{ props.value.desk }}</p>
+            <p class="desk-number">{{ props.value.tableNumber }}</p>
         </div>
     </div>
 </template>

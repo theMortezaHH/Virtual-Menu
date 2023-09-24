@@ -12,8 +12,11 @@ const selectedCategoryItems = computed(() => {
     if (!customerStore().data.categoryItems) {
         return
     }
-    const selectedId = customerStore().data.categoryItems[selectedIndex.value].id
-    return customerStore().data.menuItems.filter((x) => x.categoryId === selectedId)
+    const selectedId =
+        customerStore().data.categoryItems[selectedIndex.value].id
+    return customerStore().data.productItmes.filter(
+        (x) => x.categoryId === selectedId
+    )
 })
 const calculatedHeight = window.innerHeight - 280
 </script>
@@ -33,7 +36,10 @@ const calculatedHeight = window.innerHeight - 280
             />
         </div>
 
-        <div class="product-container" :style="{ height: calculatedHeight + 'px' }">
+        <div
+            class="product-container"
+            :style="{ height: calculatedHeight + 'px' }"
+        >
             <Product
                 v-for="(item, index) in selectedCategoryItems"
                 :value="item"

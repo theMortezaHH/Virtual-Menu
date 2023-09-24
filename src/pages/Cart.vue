@@ -11,7 +11,7 @@ function setOrder() {
     orderStore().setOrderDuration()
     customerStore().basketReset()
 
-    fetch("./database/MenuData", {
+    fetch("http://localhost:5058/Order", {
         method: "POST",
         body: {
             data: orderStore().order,
