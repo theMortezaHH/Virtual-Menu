@@ -8,14 +8,15 @@ const props = defineProps({
     <div class="cart">
         <div class="order-container">
             <p class="order-title">:سفارشات</p>
-            <p v-for="item in props.value.items" class="order-item">
-                <span class="order-count"> x{{ item.count }} </span>
-                {{ item.title }}
+            <p class="order-item" v-for="item in props.value.Items">
+                <span class="order-count"> x{{ item.Count }} </span>
+                {{ item.Title }}
             </p>
+            <!-- <input type="checkbox" v-for="item in props.value.Items" /> -->
         </div>
         <div class="order-status">
-            <p class="desk-title">شماره میز</p>
-            <p class="desk-number">{{ props.value.tableNumber }}</p>
+            <p class="desk-title">تکمیل میز</p>
+            <p class="desk-number">{{ props.value.TableNumber }}</p>
         </div>
     </div>
 </template>
@@ -85,6 +86,7 @@ const props = defineProps({
             justify-content: center;
             align-items: center;
             padding: 5px 0 0 0;
+            margin: 0 0 5px 0;
             height: 50px;
             width: 50px;
             color: #ffffff;
