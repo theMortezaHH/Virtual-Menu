@@ -2,21 +2,23 @@
 const props = defineProps({
     value: Array,
 })
+
+const calculatedHeight = (props.value.items.length + 1) * 40 + 2
 </script>
 
 <template>
     <div class="cart">
         <div class="order-container">
             <p class="order-title">:سفارشات</p>
-            <p class="order-item" v-for="item in props.value.Items">
-                <span class="order-count"> x{{ item.Count }} </span>
-                {{ item.Title }}
+            <p class="order-item" v-for="item in props.value.items">
+                <span class="order-count"> x{{ item.count }} </span>
+                {{ item.title }}
             </p>
             <!-- <input type="checkbox" v-for="item in props.value.Items" /> -->
         </div>
-        <div class="order-status">
+        <div class="order-status" :style="{ height: calculatedHeight + 'px' }">
             <p class="desk-title">تکمیل میز</p>
-            <p class="desk-number">{{ props.value.TableNumber }}</p>
+            <p class="desk-number">{{ props.value.tableNumber }}</p>
         </div>
     </div>
 </template>
