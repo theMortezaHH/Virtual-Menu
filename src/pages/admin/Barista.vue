@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue"
 import Sidebar from "@/components/sidebar.vue"
 import OrderCard from "@/components/order-card.vue"
+
 const data = ref({})
 const webSocket = new WebSocket("ws://192.168.100.249:5555/Barista")
 webSocket.addEventListener("open", (event) => {
@@ -9,13 +10,11 @@ webSocket.addEventListener("open", (event) => {
 })
 webSocket.addEventListener("message", (event) => {
     data.value = JSON.parse(event.data)
-    console.log("data")
 })
-const response = fetch("http://192.168.100.249:5555/Order")
 
 // async function getData() {
-//     const response = await fetch("http://192.168.100.249:5555/Order")
-//     // const response = await fetch("/database/baristaData")
+//     // const response = await fetch("http://192.168.100.249:5555/Order")
+//     const response = await fetch("/database/baristaData")
 //     data.value = await response.json()
 // }
 
@@ -29,7 +28,6 @@ const response = fetch("http://192.168.100.249:5555/Order")
         <div class="header">
             <p class="headerTitle">لیست سفارشات</p>
         </div>
-
         <div class="order-card-container">
             <OrderCard
                 v-for="(item, index) in data"
@@ -65,10 +63,14 @@ const response = fetch("http://192.168.100.249:5555/Order")
             font-size: 25px;
         }
     }
-    .order-card-container {
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-    }
+}
+.order-card-container {
+    position: relative;
+    display: flex;
+    flex-direction: unset;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    overflow: auto;
 }
 </style>
