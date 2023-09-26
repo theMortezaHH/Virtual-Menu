@@ -5,7 +5,8 @@ const customerStore = defineStore("basket", () => {
     const data = ref({})
 
     async function getData() {
-        const response = await fetch("http://localhost:5058/MenuData")
+        const response = await fetch("http://192.168.100.249:5555/MenuData")
+        // const response = await fetch("/database/customerData")
         data.value = await response.json()
         for (let index = 0; index < data.value.productItems.length; index++) {
             data.value.productItems[index].count = 0

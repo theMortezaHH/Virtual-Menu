@@ -11,11 +11,14 @@ function setOrder() {
     orderStore().setOrderDuration()
     customerStore().basketReset()
 
-    fetch("http://localhost:5058/Order", {
+    const data = { items: orderStore().order }
+    fetch("http://192.168.100.249:5555/Order", {
+        // fetch("/database/baristaData", {
         method: "POST",
-        body: {
-            data: orderStore().order,
+        headers: {
+            "Content-type": "application/json",
         },
+        body: JSON.stringify(data),
     })
 }
 </script>
