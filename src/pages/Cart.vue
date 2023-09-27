@@ -2,14 +2,13 @@
 import customerStore from "@/store/customer-store.js"
 import orderStore from "@/store/order-store.js"
 import BasketItem from "@/components/basket-item.vue"
+import { useRouter } from "vue-router"
 
-const deskCount = [1, 2, 3, 4, 5, 6]
+const router = useRouter()
 
 function setOrder() {
     const basketItems = JSON.stringify(customerStore().basketItems)
     orderStore().order = JSON.parse(basketItems)
-    orderStore().setOrderDuration()
-    customerStore().basketReset()
 
     const data = { items: orderStore().order }
     fetch("http://192.168.100.249:5555/Order", {
@@ -19,6 +18,12 @@ function setOrder() {
             "Content-type": "application/json",
         },
         body: JSON.stringify(data),
+    }).then((response) => {
+        if (response.status === 200) {
+            orderStore().setOrderDuration()
+            customerStore().basketReset()
+            router.push("/order")
+        }
     })
 }
 </script>
@@ -52,14 +57,13 @@ function setOrder() {
             </p>
         </div>
 
-        <router-link
-            class="go-to-order"
+        <input
+            type="button"
+            class="confirm-order"
             v-if="customerStore().basketItemsCount > 0"
             @click="setOrder()"
-            to="/order"
-        >
-            تایید سفارش
-        </router-link>
+            value="تایید سفارش"
+        />
     </div>
 </template>
 
@@ -117,7 +121,7 @@ function setOrder() {
             margin: 20px 0 20px 0;
         }
     }
-    .go-to-order {
+    .confirm-order {
         display: flex;
         position: relative;
         flex-direction: row;
@@ -130,7 +134,7 @@ function setOrder() {
         box-shadow: 0 2px 5px 2px var(--shadow);
         border: 1px solid var(--border);
         border-radius: 10px;
-        text-decoration: none;
+        font-size: 16px;
     }
 }
 </style>
