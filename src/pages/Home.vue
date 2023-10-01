@@ -31,7 +31,8 @@ const calculatedHeight = window.innerHeight - 280
                 v-for="(item, index) in customerStore().data.categoryItems"
                 :value="item"
                 :selected="selectedIndex === index"
-                :key="index"
+                :key="item.id"
+                :editor="false"
                 @click="selectedIndex = index"
             />
         </div>
@@ -44,6 +45,7 @@ const calculatedHeight = window.innerHeight - 280
                 v-for="(item, index) in selectedCategoryItems"
                 :value="item"
                 :position="index"
+                :editor="false"
                 :key="item.id"
             />
         </div>

@@ -11,8 +11,9 @@ function setOrder() {
     orderStore().order = JSON.parse(basketItems)
 
     const data = { items: orderStore().order }
-    fetch("http://192.168.100.249:5555/Order", {
-        // fetch("/database/baristaData", {
+    console.log(data)
+    // fetch("http://192.168.100.249:5555/Order", {
+    fetch("/database/baristaData", {
         method: "POST",
         headers: {
             "Content-type": "application/json",

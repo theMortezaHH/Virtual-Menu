@@ -10,6 +10,8 @@ import Cart from "@/pages/Cart.vue"
 import Order from "@/pages/Order.vue"
 import Barista from "@/pages/admin/Barista.vue"
 import Editor from "@/pages/admin/Editor.vue"
+import EditProduct from "@/pages/admin/editor/Edit-Product.vue"
+import EditCategory from "@/pages/admin/editor/Edit-Category.vue"
 import NotFound from "@/pages/NotFound.vue"
 
 const pinia = createPinia()
@@ -21,6 +23,8 @@ const routes = [
     { path: "/order", component: Order },
     { path: "/admin/barista", component: Barista },
     { path: "/admin/editor", component: Editor },
+    { path: "/admin/edit-product/:id", component: EditProduct},
+    { path: "/admin/edit-category/:id", component: EditCategory},
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ]
 
