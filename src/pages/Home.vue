@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useRouter } from "vue-router"
 import customerStore from "@/store/customer-store.js"
 import MenuCategory from "@/components/menu-category.vue"
@@ -12,11 +12,8 @@ const selectedCategoryItems = computed(() => {
     if (!customerStore().data.categoryItems) {
         return
     }
-    const selectedId =
-        customerStore().data.categoryItems[selectedIndex.value].id
-    return customerStore().data.productItems.filter(
-        (x) => x.categoryId === selectedId
-    )
+    const selectedId = customerStore().data.categoryItems[selectedIndex.value].id
+    return customerStore().data.productItems.filter((x) => x.categoryId === selectedId)
 })
 const calculatedHeight = window.innerHeight - 280
 </script>
@@ -37,10 +34,7 @@ const calculatedHeight = window.innerHeight - 280
             />
         </div>
 
-        <div
-            class="product-container"
-            :style="{ height: calculatedHeight + 'px' }"
-        >
+        <div class="product-container" :style="{ height: calculatedHeight + 'px' }">
             <Product
                 v-for="(item, index) in selectedCategoryItems"
                 :value="item"

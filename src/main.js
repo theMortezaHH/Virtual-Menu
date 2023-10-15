@@ -23,8 +23,8 @@ const routes = [
     { path: "/order", component: Order },
     { path: "/admin/barista", component: Barista },
     { path: "/admin/editor", component: Editor },
-    { path: "/admin/edit-product/:id", component: EditProduct},
-    { path: "/admin/edit-category/:id", component: EditCategory},
+    { path: "/admin/edit-product/:id", component: EditProduct },
+    { path: "/admin/edit-category/:id", component: EditCategory },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ]
 
@@ -33,6 +33,7 @@ const router = createRouter({
     routes,
 })
 
+//blockes route if customer has an active order
 router.beforeEach((to, from, next) => {
     if (from.path === "/order") {
         if (orderStore().order.length !== undefined) {
@@ -42,6 +43,7 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
+//a filter used for showing price
 app.config.globalProperties.$filters = {
     price(value) {
         return `${value.toLocaleString()} تومان`
