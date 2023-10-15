@@ -7,16 +7,17 @@ import { useRouter } from "vue-router"
 const router = useRouter()
 
 function setOrder() {
+    //setes items in the basket as an active order
     const basketItems = JSON.stringify(customerStore().basketItems)
     orderStore().order = JSON.parse(basketItems)
 
+    //fetches order, resetws the basket and routes to the order page
     const data = { items: orderStore().order }
-    console.log(data)
-    // fetch("http://192.168.100.249:5555/Order", {
-    fetch("/database/baristaData", {
+    fetch("http://192.168.1.161:7170/Customer/Order", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(data),
     }).then((response) => {

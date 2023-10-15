@@ -4,6 +4,7 @@ import colorThemeStore from "@/store/color-theme-store.js"
 
 const sidebarVisible = ref(false)
 
+//shows of hides the sidebar
 function ShowSidebar() {
     if (!sidebarVisible.value) {
         document.querySelector(".sidebar").classList.add("show-sidebar")

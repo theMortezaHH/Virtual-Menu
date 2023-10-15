@@ -5,6 +5,7 @@ import BasketItem from "@/components/basket-item.vue"
 
 const basketVisible = ref(false)
 
+//showes or hides the basket
 function ShowBasket() {
     if (!basketVisible.value) {
         document.querySelector(".basket").classList.add("show-basket")
@@ -35,22 +36,13 @@ function ShowBasket() {
                     d="M160 192l96-128 96 128"
                 />
             </svg>
-            <p
-                class="items-in-basket"
-                v-if="customerStore().basketItemsCount > 0"
-            >
+            <p class="items-in-basket" v-if="customerStore().basketItemsCount > 0">
                 {{ customerStore().basketItemsCount }}
             </p>
-            <p
-                class="items-total-price"
-                v-if="customerStore().basketTotalPrice > 0"
-            >
+            <p class="items-total-price" v-if="customerStore().basketTotalPrice > 0">
                 جمع کل: {{ $filters.price(customerStore().basketTotalPrice) }}
             </p>
-            <p
-                class="items-total-price"
-                v-if="customerStore().basketTotalPrice === 0"
-            >
+            <p class="items-total-price" v-if="customerStore().basketTotalPrice === 0">
                 سبد خرید شما خالیست
             </p>
             <svg viewBox="0 0 512 512" class="chevron">
@@ -72,11 +64,7 @@ function ShowBasket() {
                 :key="index"
             />
         </div>
-        <router-link
-            class="go-to-card"
-            v-if="customerStore().basketItemsCount > 0"
-            to="/cart"
-        >
+        <router-link class="go-to-card" v-if="customerStore().basketItemsCount > 0" to="/cart">
             ثبت سفارش
         </router-link>
     </div>

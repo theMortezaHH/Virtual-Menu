@@ -3,24 +3,20 @@ import { onMounted, ref } from "vue"
 import Sidebar from "@/components/sidebar.vue"
 import OrderCard from "@/components/order-card.vue"
 
+//this const contains data needed for barista pages
 const data = ref({})
-const webSocket = new WebSocket("ws://192.168.100.249:5555/Barista")
-webSocket.addEventListener("open", (event) => {
-    webSocket.send("Hello Server!")
-})
-webSocket.addEventListener("message", (event) => {
+
+//an active connection for updating order list
+const source = new EventSource("http://192.168.1.161:7170/Barista")
+source.addEventListener("message", (event) => {
     data.value = JSON.parse(event.data)
 })
 
-// async function getData() {
-//     // const response = await fetch("http://192.168.100.249:5555/Order")
-//     const response = await fetch("/database/baristaData")
-//     data.value = await response.json()
-// }
-
-// onMounted(() => {
-//     getData()
-// })
+onMounted(async () => {
+    //fetches data needed for barista page
+    const response = await fetch("http://192.168.1.161:7170/Barista")
+    data.value = await response.json()
+})
 </script>
 
 <template>
@@ -29,11 +25,7 @@ webSocket.addEventListener("message", (event) => {
             <p class="headerTitle">لیست سفارشات</p>
         </div>
         <div class="order-card-container">
-            <OrderCard
-                v-for="(item, index) in data"
-                :value="item"
-                :key="index"
-            />
+            <OrderCard v-for="(item, index) in data" :value="item" :key="index" />
         </div>
     </div>
 

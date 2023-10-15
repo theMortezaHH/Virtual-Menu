@@ -9,19 +9,24 @@ const props = defineProps({
     editor: Boolean,
 })
 // const router = useRouter()
+
+//these consts are binded to animate product cards
 const translateX = ref("translateX(-20px)")
 const opacity = ref(0)
 
+//changes the number of every product card
 function changeNumber(param) {
     if (props.value.count + param < 0) return
-    customerStore().data.productItems[props.value.id].count += param
+    customerStore().data.productItems.find((x) => (x.id = props.value.id)).count += param
 }
+
 function route() {
     // router.push("/info/" + props.value.id)
     return
 }
 
 onMounted(() => {
+    //applies animations for every product card
     setTimeout(() => {
         translateX.value = "translateX(0px)"
         opacity.value = 1
