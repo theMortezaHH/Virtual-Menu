@@ -1,32 +1,34 @@
-<script setup>
-import { onMounted } from "vue"
-import { useRouter } from "vue-router"
-import customerStore from "@/store/customer-store.js"
-import orderStore from "@/store/order-store.js"
-import colorThemeStore from "@/store/color-theme-store.js"
+<script setup lang="ts">
+import { ref } from "vue"
+import TabMenu from "primevue/tabmenu"
 
-const router = useRouter()
-onMounted(async () => {
-    //routes customer to order page if the customer has an active order
-    await customerStore().getData()
-    if (!window.location.href.includes("/admin")) {
-        if (customerStore().data.order) {
-            orderStore().order = customerStore().data.order
-            orderStore().setOrderDuration()
-            router.push("/order")
-        } else {
-            router.push("/")
-        }
-    }
-
-    //applies the color theme chosen by customer
-    if (localStorage.getItem("colorTheme") === "false") {
-        colorThemeStore().colorTheme = true
-    }
-    colorThemeStore().changeColorTheme()
-})
+const items = ref([
+    {
+        label: "Menu",
+        icon: "pi pi-th-large",
+        to: "/",
+    },
+    {
+        label: "Cart",
+        icon: "pi pi-shopping-cart",
+        to: "/cart",
+    },
+    {
+        label: "Settings",
+        icon: "pi pi-cog",
+        to: "/settings",
+    },
+])
 </script>
+
 <template>
+    <TabMenu :model="items" class="header" />
+
     <RouterView />
 </template>
-<style lang="scss" scoped></style>
+
+<style scoped lang="scss">
+.header {
+    margin: 0 0 20px 0;
+}
+</style>
