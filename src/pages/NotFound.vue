@@ -1,8 +1,8 @@
-<script setup></script>
+<script setup lang="ts"></script>
 
 <template>
     <div class="container">
-        <p class="not-found">(404) صفحه مورد نظر یافت نشد</p>
+        <p class="not-found">(404)</p>
     </div>
 </template>
 
@@ -11,11 +11,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100dvh;
+    height: 70dvh;
     width: 100dvw;
     .not-found {
         font-size: 5dvw;
-        direction: rtl;
     }
 }
 </style>
